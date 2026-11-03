@@ -438,12 +438,92 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
 @media print{body *{visibility:hidden}.receipt-modal,.receipt-modal *{visibility:visible}.receipt-modal{position:absolute;left:0;top:0;width:100%;max-width:80mm;padding:10px;background:#fff;color:#000}.actions,.x{display:none !important}.receipt-divider{border-bottom-color:#000}.print-reports,.print-reports *{visibility:visible!important;position:static}.print-reports{position:absolute;left:0;top:0;width:100%}}
 @media(max-width:600px){.dash-hero{grid-template-columns:1fr;text-align:center}.dash-hero-art{display:none}.dash-hero-value{font-size:1.8rem}.stats.dash-stats{grid-template-columns:repeat(2,1fr)}.report-filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.rpt-filter{flex:0 0 auto}.inv-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.receipt-modal{font-size:0.8rem;padding:16px 12px}.receipt-item-header,.receipt-item{grid-template-columns:1fr 35px 50px 55px;gap:4px}.receipt-header h2{font-size:1.2rem}}
+/* ===== round 5 ===== */
+.receipt-invoice{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:18px 16px;display:grid;gap:10px;font-family:var(--f-body)}
+.ri-head{display:flex;flex-direction:column;gap:2px;text-align:center;padding-bottom:10px;border-bottom:1.5px dashed var(--line)}
+.ri-head b{font-family:var(--f-disp);font-size:1.3rem;font-weight:800;color:var(--fg)}
+.ri-head small{color:var(--muted);font-size:.78rem}
+.ri-tag{display:inline-block;width:fit-content;background:var(--green);color:var(--btn-fg);font:700 .68rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 10px;margin:0 auto}
+.ri-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;font-size:.84rem}
+.ri-meta div{display:flex;justify-content:space-between;gap:8px}
+.ri-meta .m{color:var(--muted)}
+.ri-lines{display:grid;gap:6px;padding:4px 0}
+.ri-line{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;font-variant-numeric:tabular-nums}
+.ri-line .n{min-width:0;overflow-wrap:anywhere}
+.ri-dash{border:0;border-top:1.5px dashed var(--line)}
+.ri-tot div{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;font-variant-numeric:tabular-nums;padding:2px 0}
+.ri-tot .save{color:var(--green);font-weight:700}
+.ri-tot .grand{font:800 1.2rem var(--f-disp);border-top:1.5px solid var(--line);padding-top:6px;margin-top:4px}
+.ri-foot{display:flex;flex-direction:column;gap:2px;text-align:center;font-size:.78rem;color:var(--muted);padding-top:6px;border-top:1.5px dashed var(--line)}
+.ri-foot b{color:var(--fg)}
+.doc-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font:700 .9rem var(--f-body);cursor:pointer}
+.doc-btn:hover{background:var(--surface2)}
+.vip-badge{display:inline-flex;align-items:center;gap:6px;font:700 .8rem var(--f-body);border-radius:999px;padding:3px 12px;border:1px solid var(--line);background:color-mix(in srgb,var(--gold) 18%,var(--surface));color:var(--fg)}
+.vip-badge.silver{background:color-mix(in srgb,var(--muted) 18%,var(--surface))}
+.vip-badge.golden{background:color-mix(in srgb,var(--gold) 24%,var(--surface))}
+.vip-badge.platinum{background:color-mix(in srgb,var(--green) 20%,var(--surface));border-color:var(--green)}
+.tier-ring{width:44px;height:44px;position:relative;display:grid;place-items:center;flex:none}
+.tier-ring svg{width:44px;height:44px;transform:rotate(-90deg)}
+.tier-ring .tr-bg{fill:none;stroke:var(--line);stroke-width:4}
+.tier-ring .tr-fg{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:113.1;stroke-dashoffset:113.1;transition:stroke-dashoffset 1s ease-out}
+.tier-ring .tr-ico{position:absolute;inset:0;display:grid;place-items:center;font-size:1.05rem}
+.tier-ring.platinum .tr-fg{stroke:var(--green);animation:trpl 2s ease-in-out infinite}
+@keyframes trpl{0%,100%{filter:drop-shadow(0 0 0 color-mix(in srgb,var(--gold) 0%,transparent))}50%{filter:drop-shadow(0 0 6px var(--gold))}}
+.status-track{display:flex;align-items:flex-start;gap:0;margin:4px 0 8px}
+.st-track-step{flex:1;display:grid;justify-items:center;gap:4px;background:none;border:0;cursor:pointer;padding:4px 0;font:600 .72rem var(--f-body);color:var(--muted);min-width:0}
+.st-track-step i{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.72rem;font-weight:800;color:var(--muted);background:var(--surface);transition:background .2s,border-color .2s}
+.st-track-step b{font-weight:700;font-size:.72rem;color:var(--muted)}
+.st-track-step::before,.st-track-step::after{content:"";position:absolute}
+.st-connector{flex:0 0 14px;height:3px;background:var(--line);margin-top:13px;border-radius:3px}
+.st-track-step.on{color:var(--fg)}
+.st-track-step.on i{border-color:var(--sc);background:color-mix(in srgb,var(--sc) 16%,var(--surface));color:var(--sc)}
+.st-track-step.on b{color:var(--fg)}
+.st-connector.on{background:var(--green)}
+.st-step-0{--sc:var(--red)}
+.st-step-1{--sc:var(--sc-placed)}
+.st-step-2{--sc:var(--sc-ship)}
+.st-step-3{--sc:var(--sc-deliv)}
+@media (max-width:380px){.st-track-step b{font-size:.64rem}}
+.offer-slide{background:linear-gradient(120deg,var(--gold),var(--hero2));color:var(--gold-ink)}
+.offer-slide h3{color:var(--gold-ink)}
+.offer-slide p{opacity:.95}
+.offer-slide .btn{background:var(--green);color:var(--btn-fg)}
+.notif-bar{display:block;width:100%;border:0;background:linear-gradient(90deg,var(--gold),color-mix(in srgb,var(--gold) 70%,var(--hero2)));color:var(--gold-ink);font:700 .84rem var(--f-body);padding:8px 14px;text-align:center;cursor:pointer}
+.coupon-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}
+.coupon-row .cr-code{font-weight:800;letter-spacing:.03em}
+.coupon-row .cr-tag{font-size:.68rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.coupon-row .cr-val{font-size:.84rem;color:var(--muted)}
+.coupon-row .cr-actions{margin-left:auto;display:flex;gap:6px}
+.coupon-row .chk input{width:18px;height:18px}
+.vip-pop{display:grid;gap:10px}
+.vip-pop .vp-code{font:800 1.4rem var(--f-disp);letter-spacing:.08em;text-align:center;background:var(--surface2);border:1.5px dashed var(--line);border-radius:14px;padding:10px}
+.vip-pop .vp-note{color:var(--muted);font-size:.9rem;text-align:center}
+.acct-row{display:flex;align-items:center;gap:12px}
+#acctIco{width:46px;height:46px;display:grid;place-items:center;padding:0}
+#acctIco .tier-ring{width:34px;height:34px}
+#acctIco .tier-ring svg{width:34px;height:34px}
+.pre-badge{top:auto!important;bottom:8px!important;left:8px!important;right:auto!important}
+@media (prefers-reduced-motion:reduce){.tier-ring .tr-fg{transition:none}.tier-ring.platinum .tr-fg{animation:none}}
+@media print{.r-actions,.doc-btn,.status-track,.st-track-step{display:none !important}}
+/* ===== round 6: shwapno refresh ===== */
+.off{position:absolute;top:8px;left:8px;background:#e02020;color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.02em;padding:3px 10px 5px;border-radius:4px 4px 0 0;z-index:2}
+.off::after{content:"";position:absolute;left:0;right:0;bottom:-5px;background:#e02020;clip-path:polygon(0 0,100% 0,95% 100%,85% 0,75% 100%,65% 0,55% 100%,45% 0,35% 100%,25% 0,15% 100%,5% 0)}
+.feat-badge{position:absolute;top:8px;right:8px;z-index:2;background:linear-gradient(135deg,#ff8a00,#ff5e00);color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:3px 9px;border-radius:999px;box-shadow:0 2px 6px rgba(255,94,0,.4)}
+@media(min-width:760px){.card{background:#fff;border-color:#e6e6e6;box-shadow:0 1px 3px rgba(0,0,0,.06)}.c-art{background:#fafafa}}
+.topsearch{display:none;flex:1;max-width:420px;margin:0 6px}.topsearch input{width:100%;height:38px;border:0;border-radius:999px;padding:0 18px;font:500 .9rem var(--f-body);background:rgba(255,255,255,.16);color:#fff;outline:none}.topsearch input::placeholder{color:rgba(255,255,255,.75)}.topsearch input:focus{background:#fff;color:#123}
+@media(min-width:900px){.topsearch{display:flex}}
+.shopwrap{display:block}.sbside{display:none}.sbside .panel{position:sticky;top:78px}.sbside .fgroup{margin-bottom:16px}.sbside .fgroup h4{margin:0 0 8px;font:700 .8rem var(--f-body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.sbside label{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.9rem;cursor:pointer}.sbside input[type=range]{width:100%}.sbside .pmin{font-weight:700;color:var(--green)}.sbside .brandrow{display:flex;flex-wrap:wrap;gap:4px}.sbside .brandrow .chip{font-size:.75rem;padding:4px 10px}.sbside .brandrow .chip.on{background:var(--green);color:#fff}@media(min-width:1000px){.shopwrap{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}.sbside{display:block}}
+.pw-meters{margin:8px 0 4px}.pw-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.pw-bar i{display:block;height:100%;width:0;background:#c0392b;transition:width .2s,background .2s}.pw-bar i[data-lv="1"]{background:#e67e22}.pw-bar i[data-lv="2"]{background:#f1c40f}.pw-bar i[data-lv="3"]{background:#27ae60}.pw-bar i[data-lv="4"]{background:#157347}.pw-rules{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;margin:8px 0 0;padding:0}.pw-rules li{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:4px}.pw-rules li::before{content:"○";font-size:.7rem}.pw-rules li.ok{color:var(--green);font-weight:600}.pw-rules li.ok::before{content:"●"}
+.qr-note{font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px;line-height:1.45}
+.ctable{width:100%;border-collapse:collapse;font-size:.9rem}.ctable th{text-align:left;font:700 .72rem var(--f-body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:10px 8px;border-bottom:2px solid var(--line)}.ctable td{padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:top}.ctable tr:hover td{background:color-mix(in srgb,var(--green) 5%,transparent)}.ctable .cact{display:flex;gap:6px;flex-wrap:wrap}
+.copyrightbar{background:#ffffff;color:#000;text-align:center;font:400 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:20px 0;margin-top:0}
+@media print{.copyrightbar{display:none!important}}
 </style>
 
 <header class="top">
   <div class="wrap">
     <button class="brand" data-act="go" data-v="home" aria-label="Deshi Bazaar home">
-      <span class="mark"><svg id="deshi-mark" class="mark-svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><title>Deshi Bazaar mark</title><desc>Abstract geometric mark: a rhombus crossed by a horizontal pill bar.</desc><polygon points="128,36 220,128 128,220 36,128"/><rect x="16" y="112" width="224" height="32" rx="16" ry="16"/></svg></span>
+      <span class="mark"><svg id="deshi-mark" class="mark-svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><title>Deshi Bazaar mark</title><desc>Bold geometric retail mark: green badge with interlocked gold-and-white DB monogram and rice-grain accent.</desc><rect x="8" y="8" width="240" height="240" rx="40" fill="#0f5c39"/><rect x="14" y="14" width="228" height="228" rx="36" fill="none" stroke="#f2b53c" stroke-width="5"/><rect x="58" y="62" width="30" height="130" fill="#f2b53c"/><path d="M88 62 H120 A65 65 0 0 1 120 192 H88 V160 H118 A33 33 0 0 0 118 94 H88 Z" fill="#ffffff"/><rect x="140" y="62" width="30" height="130" fill="#ffffff"/><path d="M170 62 H204 A46 46 0 0 1 204 138 H170 V110 H200 A18 18 0 0 0 200 88 H170 Z" fill="#f2b53c"/><path d="M170 110 H210 A41 41 0 0 1 210 192 H170 V160 H206 A13 13 0 0 0 206 138 H170 Z" fill="#f2b53c"/><ellipse cx="62" cy="38" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 62 38)"/><ellipse cx="78" cy="30" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 78 30)"/><ellipse cx="94" cy="23" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 94 23)"/></svg></span>
       <span><b>Deshi Bazaar</b><small>Taste of Bangladesh brings your plate</small></span>
     </button>
     <nav class="dnav" aria-label="Main">
@@ -453,6 +533,7 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
       <button data-act="go" data-v="me" data-nav="me">My Account</button>
     </nav>
     <span class="spacer"></span>
+    <div class="topsearch"><input id="qtop" type="search" placeholder="Search masala, rice, tea…" aria-label="Search products" autocomplete="off"></div>
     <button class="cartpill" id="pill" data-act="go" data-v="cart" aria-label="Open cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2l2-8H6.2"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
       <span id="pillTxt">Cart</span>
@@ -570,7 +651,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 
 var S=(function(){
   var d={ver:CATALOG_VER,products:PRODUCTS.map(function(p){return Object.assign({},p);}),settings:Object.assign({},DEF_SETTINGS),orders:[],
-    profile:{name:'',phone:'',wechat:'',prov:'',city:'',addr:''},cart:[],coupon:'',speed:'fast'};
+    profile:{name:'',phone:'',wechat:'',prov:'',city:'',addr:'',newuserClaimed:false},cart:[],coupon:'',speed:'fast'};
   var r=loadSaved();
   if(r&&typeof r==='object'){
     if(Array.isArray(r.orders))d.orders=r.orders;
@@ -586,16 +667,21 @@ var S=(function(){
   return d;
 })();
 
-var view='home',adminTab='overview',fCat='all',fQ='',fSort='feat',adminOK=false,lastOrder=null,carTimer=null,wkVal=1;
+var view='home',adminTab='overview',fCat='all',fBrand='',fQ='',fSort='feat',adminOK=false,lastOrder=null,carTimer=null,wkVal=1,prMin=0,prMax=99999;
 var B={cc:{lines:[],speed:'fast',disc:0},qb:{lines:[],speed:'fast',disc:0,name:'',phone:'',region:'',addr:'',courier:'',track:''}};
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- delivery + pricing ---------- */
 function rate(speed){return speed==='slow'?S.settings.slowRate:S.settings.fastRate;}
 function billable(w){var st=S.settings.step>0?S.settings.step:1;return w>0?Math.ceil(w/st-1e-9)*st:0;}
-function shipFor(w,speed){return Math.round(billable(w)*rate(speed)*100)/100;}
+function shipFor(w,speed){
+  var bw=billable(w),r;
+  if(speed==='slow'){r=bw>0&&bw<=3?8:7;}
+  else{r=bw>0&&bw<=3?10:8;}
+  return Math.round(bw*r*100)/100;
+}
 function qtyOf(id){var l=S.cart.filter(function(x){return x.id===id;})[0];return l?l.q:0;}
-function findCoupon(code){code=(code||'').toUpperCase();return S.settings.coupons.filter(function(c){return c.code.toUpperCase()===code;})[0];}
+function findCoupon(code){code=(code||'').toUpperCase();var c=S.settings.coupons.filter(function(x){return x.code.toUpperCase()===code;})[0];return c&&c.active===false?null:c;}
 function totals(){
   var lines=[],sub=0,mrp=0,w=0,count=0,pre=false;
   S.cart.forEach(function(l){var p=prod(l.id);if(!p)return;lines.push({p:p,q:l.q});sub+=p.price*l.q;mrp+=Math.max(p.old,p.price)*l.q;w+=(p.w||0)*l.q;count+=l.q;if(p.st==='pre')pre=true;});
@@ -621,10 +707,10 @@ function slot(p){
   return '<div class="step"><button data-act="dec" data-id="'+p.id+'" aria-label="Remove one">−</button><span>'+q+'</span><button data-act="inc" data-id="'+p.id+'" aria-label="Add one">+</button></div>';
 }
 function card(p){
-  var off=p.old>p.price?Math.round((1-p.price/p.old)*100):0;
+  var rmbOff=p.old>p.price?Math.round((p.old-p.price)*100)/100:0;
   var tag=p.feat?'Hot Sell':p.tag;
   return '<article class="card'+(p.st==='out'?' out':'')+'">'+
-   '<button class="c-art" data-act="open" data-id="'+p.id+'" aria-label="View '+esc(title(p))+'">'+art(p)+(off?'<span class="off">-'+off+'%</span>':'')+(tag?'<span class="tagb">'+esc(tag)+'</span>':'')+'</button>'+
+   '<button class="c-art" data-act="open" data-id="'+p.id+'" aria-label="View '+esc(title(p))+'">'+art(p)+(rmbOff>0?'<span class="off">'+rmbOff+' RMB OFF</span>':'')+(tag?'<span class="tagb">'+esc(tag)+'</span>':'')+'</button>'+
    '<div class="c-body"><span class="c-cat">'+esc(catOf(p.cat).name)+'</span><h3 data-act="open" data-id="'+p.id+'">'+esc(title(p))+'</h3><p class="bn">'+esc(p.bn)+'</p><p class="szl">'+esc(p.size)+'</p>'+stp(p)+
    '<div class="c-foot"><div class="pr">'+(p.old>p.price?'<s>'+money(p.old)+'</s>':'')+'<b>'+money(p.price)+'</b></div><div data-slot="'+p.id+'">'+slot(p)+'</div></div></div></article>';
 }
@@ -681,6 +767,8 @@ function filtered(){
   else if(fCat==='hot')list=list.filter(function(p){return p.feat;});
   else if(fCat==='in'||fCat==='out'||fCat==='pre')list=list.filter(function(p){return p.st===fCat;});
   else if(fCat!=='all')list=list.filter(function(p){return p.cat===fCat;});
+  if(fBrand)list=list.filter(function(p){return p.bn===fBrand;});
+  if(prMin>0||prMax<99999)list=list.filter(function(p){return p.price>=prMin&&p.price<=prMax;});
   if(q)list=list.filter(function(p){return (title(p)+' '+p.bn+' '+p.size+' '+catOf(p.cat).name).toLowerCase().indexOf(q)>-1;});
   if(fSort==='low')list.sort(function(a,b){return a.price-b.price;});
   else if(fSort==='high')list.sort(function(a,b){return b.price-a.price;});
@@ -700,6 +788,9 @@ V.shop=function(){
   return '<div class="wrap"><div class="shopbar"><div class="search"><input id="q" type="search" placeholder="Search masala, rice, tea, chanachur…" value="'+esc(fQ)+'" aria-label="Search products" autocomplete="off">'+
    '<select id="sort" aria-label="Sort products"><option value="feat"'+(fSort==='feat'?' selected':'')+'>Featured</option><option value="low"'+(fSort==='low'?' selected':'')+'>Price: low</option><option value="high"'+(fSort==='high'?' selected':'')+'>Price: high</option><option value="az"'+(fSort==='az'?' selected':'')+'>A to Z</option></select></div>'+
    '<div class="chips">'+chips.map(function(c){return '<button class="chip'+(fCat===c.id?' on':'')+'" data-act="catf" data-id="'+c.id+'"><i style="background:'+c.col+'"></i>'+esc(c.name)+'</button>';}).join('')+'</div></div>'+
+   '<aside class="sbside"><div class="panel"><h3 style="margin:0 0 12px">Price range</h3><input id="pr-min" type="number" min="0" value="0" style="width:46%;margin-right:4px">–<input id="pr-max" type="number" min="0" value="'+Math.max.apply(null,S.products.map(function(p){return p.price;}))+'" style="width:46%;margin-left:4px"><input id="pr-go" type="range" min="0" max="'+Math.max.apply(null,S.products.map(function(p){return p.price;}))+'" value="'+Math.max.apply(null,S.products.map(function(p){return p.price;}))+'" style="width:100%;margin-top:8px"><p class="note" id="pr-out" style="margin-top:6px">Up to <b id="pr-val" style="color:var(--green)">¥'+Math.max.apply(null,S.products.map(function(p){return p.price;}))+'</b></p></div>'+
+   '<div class="panel"><h3 style="margin:0 0 12px">Category</h3><div class="fgroup">'+CATS.map(function(c){return '<label><input type="checkbox" data-act="catf" data-id="'+c.id+'">'+esc(c.name)+'</label>';}).join('')+'</div></div>'+
+   '<div class="panel"><h3 style="margin:0 0 12px">Brand</h3><div class="brandrow">'+(function(){var bs=[],seen={};S.products.forEach(function(p){if(p.bn&&!seen[p.bn]){seen[p.bn]=1;bs.push(p.bn);}});return bs.map(function(b){return '<span class="chip'+(fBrand===b?' on':'')+'" data-act="brandf" data-id="'+esc(b)+'">'+esc(b)+'</span>';}).join('')||'<span class="note">No brands listed</span>';})()+'</div></div></aside>'+
    '<p class="count" id="count"></p><div class="grid" id="grid"></div>'+priceNote()+'</div>'+foot();
 };
 
@@ -729,15 +820,15 @@ V.checkout=function(){
    fld('ck-name','Full name','text',p.name,'autocomplete="name"')+fld('ck-phone','Phone number','tel',p.phone,'inputmode="tel" autocomplete="tel"')+
    fld('ck-wechat','Your WeChat ID','text',p.wechat,'')+
    '<label class="fld"><span>Province / city</span><select id="ck-prov"><option value="">Select…</option>'+provOpts(p.prov)+'</select></label>'+
-   fld('ck-city','City and district (Nanjing or any city)','text',p.city,'autocomplete="address-level2" placeholder="e.g. 南京市建邺区兴隆街道"')+
+   fld('ck-city','City and district (Nanjing or any city)','text',p.city,'autocomplete="address-level2" placeholder="Write Your City"')+
    '<label class="fld full"><span>Full address (building, room number, postcode)</span><textarea id="ck-addr" autocomplete="street-address">'+esc(p.addr)+'</textarea></label>'+
    '<label class="fld full"><span>Note for us (optional)</span><textarea id="ck-note" placeholder="Spice level, delivery time, anything we should know"></textarea></label></div>'+
-    '<h2 style="margin-top:16px">Payment</h2><div class="radios">'+PAYS.map(function(x,i){return '<label class="radio"><input type="radio" name="pay" value="'+x+'"'+((S.pay||PAYS[0])===x?' checked':'')+'><span>'+x+'</span></label>';}).join('')+'</div><div class="qr-display">'+(function(){var s=S.pay||PAYS[0];if(s==='WeChat Pay')return '<img src="img/wechat_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"> +8618551702750';if(s==='Alipay')return '<img src="img/alipay_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"> +8618551702750';return 'Bank transfer is only available for BDT orders.';})()+'</div>'+
+    '<h2 style="margin-top:16px">Payment</h2><div class="radios">'+PAYS.map(function(x,i){return '<label class="radio"><input type="radio" name="pay" value="'+x+'"'+((S.pay||PAYS[0])===x?' checked':'')+'><span>'+x+'</span></label>';}).join('')+'</div><div class="qr-display">'+(function(){var s=S.pay||PAYS[0];if(s==='WeChat Pay')return '<img src="img/wechat_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';if(s==='Alipay')return '<img src="img/alipay_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';return 'Bank transfer is only available for BDT orders.';})()+'</div>'+
     '<label class="fld full"><span>Upload Payment Screenshot</span><input type="file" id="payment-screenshot" accept="image/*"></label>'+
     '<label class="chk" style="margin-top:14px"><input type="checkbox" id="payment-sent"><span>I have sent the payment screenshot and order voucher to WeChat/WhatsApp +8618551702750</span></label>'+
     '<p class="note" style="margin-top:8px">You pay after we confirm your order and send a payment code.</p>'+
    '<label class="chk" style="margin-top:14px"><input id="ck-terms" type="checkbox"><span>I agree to the <button type="button" class="rm" data-act="termsheet">terms and conditions</button></span></label>'+
-   '<p class="err" id="ck-err"></p><button class="btn gold block" type="submit">Place order · '+money(T.total)+'</button></form>'+
+   '<p class="err" id="ck-err"></p><button class="btn gold block" type="submit">Confirm Order · '+money(T.total)+' (Payment Pending)</button></form>'+
    '<div class="panel"><h2>Your items</h2>'+T.lines.map(function(l){return '<div class="crow"><span>'+esc(title(l.p))+' <span class="note">'+esc(l.p.size)+' × '+l.q+'</span></span><b>'+money(l.p.price*l.q)+'</b></div>';}).join('')+
    (S.settings.coupons.length?'<div class="coupon"><input id="coupon-code" placeholder="Enter coupon code" aria-label="Coupon code" autocomplete="off" style="text-transform:uppercase"><button class="btn sm" type="button" id="apply-coupon" data-act="applycoupon">Apply</button></div><p id="coupon-msg" class="err"></p>':'')+
    '<div class="sum"><div class="muted"><span>Items</span><span>'+money(T.sub)+'</span></div>'+(T.disc?'<div class="save"><span>Coupon '+esc(T.cpn.code)+'</span><span>−'+money(T.disc)+'</span></div>':'')+
@@ -795,7 +886,7 @@ V.me=function(){
   return '<div class="wrap page"><h1>My account</h1><div class="two"><form class="panel" data-form="profile"><h2>My details</h2><p class="note" style="margin-bottom:10px">Saved on this phone only, so checkout is faster next time.</p><div class="fgrid">'+
    fld('pf-name','Full name','text',p.name,'autocomplete="name"')+fld('pf-phone','Phone number','tel',p.phone,'inputmode="tel" autocomplete="tel"')+fld('pf-wechat','WeChat ID','text',p.wechat,'')+
    '<label class="fld"><span>Province / city</span><select id="pf-prov"><option value="">Select…</option>'+provOpts(p.prov)+'</select></label>'+
-   fld('pf-city','City and district','text',p.city,'placeholder="e.g. 南京市建邺区兴隆街道"')+
+   fld('pf-city','City and district','text',p.city,'placeholder="Write Your City"')+
    '<label class="fld full"><span>Full address</span><textarea id="pf-addr">'+esc(p.addr)+'</textarea></label></div>'+
    '<div class="actions"><button class="btn" type="submit">Save details</button></div></form>'+
    '<div><div class="panel"><h2>My orders</h2>'+(mine.length?mine.map(function(o){return ordCard(o,false);}).join(''):'<p class="note">No orders yet. Your orders will appear here after checkout.</p>')+
@@ -881,7 +972,8 @@ function termsHTML(){var s=S.settings;
    '<h3>4. Delivery area and charge</h3><p>We deliver inside Nanjing City and to any other city inside Mainland China. The delivery charge is included in your order total and is based on order size (parcel weight).</p>'+
    '<h3>5. Delivery speed and rates</h3><ul><li><b>SF Express, fastest:</b> 1–3 days, '+money(s.fastRate)+' per kg.</li><li><b>Standard delivery, slower:</b> 3–5 days, '+money(s.slowRate)+' per kg.</li><li>Parcel weight is rounded up to the next '+num(s.step||1)+' kg for billing. Delivery days are estimates.</li></ul>'+
    '<h3>6. Orders and payment</h3><p>Placing an order sends us your order details. We check availability and your total, then share how to pay (WeChat Pay, Alipay or bank transfer). Your order is confirmed after we confirm it with you.</p>'+
-   '<h3>7. Changes</h3><p>Deshi Bazaar may update these terms, products and prices at any time.</p></div>';
+   '<h3>7. Refund &amp; Return Policy</h3><p>We take back any item that arrives damaged, is not as described, or is the wrong product, and we will replace it or refund the item price in full. To claim a refund or return, send us a photo of the item and your order ID on WeChat or WhatsApp (+86 185 5170 2750) within 48 hours of delivery. We resolve refund claims within 3 working days by the same method you paid. Delivery charges are refunded only when the order itself is cancelled or returned in full. Customised or pre-order items are returnable only if they arrive damaged or incorrect.</p>'+
+    '<h3>8. Changes</h3><p>Deshi Bazaar may update these terms, products and prices at any time.</p></div>';
 }
 V.terms=function(){return '<div class="wrap page"><h1>Terms &amp; Conditions</h1><div class="panel">'+termsHTML()+'</div></div>'+foot();};
 
@@ -908,9 +1000,9 @@ function updateReports(){var orders=getOrdersByPeriod();var revenue=orders.reduc
 function exportReportCSV(){var orders=getOrdersByPeriod();var rows=[['Order No','Date','Customer','Items','Subtotal','Discount','Delivery','Total','Status']];function escCsv(v){var s=String(v==null?'':v);return s.indexOf(',')>-1||s.indexOf('"')>-1||s.indexOf('\n')>-1?'"'+s.replace(/"/g,'""')+'"':s;}orders.forEach(function(o){var date=fmtDate(o.ts);var items=o.items.map(function(i){return escCsv(i.name+' ('+i.q+')');}).join('; ');rows.push([escCsv(o.no),escCsv(date),escCsv(o.cust.name),items,escCsv((o.sub||o.total||0).toFixed(2)),escCsv((o.disc||0).toFixed(2)),escCsv((o.ship||0).toFixed(2)),escCsv((o.total||0).toFixed(2)),escCsv(o.status)]);});var csv=rows.map(function(r){return r.join(',');}).join('\n');copy(csv,'Report copied to clipboard');}
 
 /* ===== Receipt Modal Functions ===== */
-function openReceipt(orderNo){var o=S.orders.filter(function(x){return x.no===orderNo;})[0];if(!o)return;var itemsHtml='';var subtotal=0;o.items.forEach(function(i,idx){var itemTotal=i.price*i.q;subtotal+=itemTotal;itemsHtml+='<div class="receipt-item"><span class="ri-name">'+(idx+1)+'. '+esc(i.name)+'<br><small>'+esc(i.size)+'</small></span><span class="ri-qty">'+i.q+'</span><span class="ri-price">'+money(i.price)+'</span><span class="ri-total">'+money(itemTotal)+'</span></div>';});var address=[o.cust.prov,o.cust.city,o.cust.addr].filter(Boolean).join(', ');$('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">×</button><div class="receipt-modal"><div class="receipt-header"><h2>Deshi Bazaar</h2><p>দেশি বাজার</p><p class="receipt-subtitle">Taste of Bangladesh brings your plate</p><p class="receipt-meta">Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China</p><p class="receipt-meta">Hotline: +8618551702750</p></div><div class="receipt-section"><div class="receipt-row"><span>Order No:</span><b id="rcpt-no">'+esc(o.no)+'</b></div><div class="receipt-row"><span>Date:</span><span id="rcpt-date">'+fmtDate(o.ts)+'</span></div><div class="receipt-row"><span>Customer:</span><span id="rcpt-customer">'+esc(o.cust.name)+'</span></div></div><div class="receipt-divider"></div><div class="receipt-items"><div class="receipt-item-header"><span class="ri-name">Item</span><span class="ri-qty">Qty</span><span class="ri-price">Price</span><span class="ri-total">Total</span></div>'+itemsHtml+'</div><div class="receipt-divider"></div><div class="receipt-totals"><div class="receipt-row"><span>Subtotal</span><span id="rcpt-subtotal">'+money(subtotal)+'</span></div><div class="receipt-row"><span>Discount</span><span id="rcpt-discount">-'+money(o.disc||0)+'</span></div><div class="receipt-row"><span>Delivery Fee</span><span id="rcpt-delivery">'+money(o.ship||0)+'</span></div><div class="receipt-row receipt-total"><span>Net Total</span><span id="rcpt-total">'+money(o.total||0)+'</span></div></div><div class="receipt-divider"></div><div class="receipt-section"><p class="receipt-label">Shipping Address:</p><p id="rcpt-address">'+esc(address)+'</p><p id="rcpt-phone">Phone: '+esc(o.cust.phone)+(o.cust.wechat?' · WeChat: '+esc(o.cust.wechat):'')+'</p></div><div class="receipt-section"><p class="receipt-label">Payment Method:</p><p id="rcpt-payment">'+esc(o.pay)+'</p></div><div class="receipt-footer"><p>Thank you for your order!</p><p>Contact: WhatsApp +8618551702750</p></div><div class="actions"><button class="btn" data-act="printreceipt">🖨️ Print Receipt</button><button class="btn ghost" data-act="copyreceipt">📋 Copy Text</button><button class="btn ghost" data-act="close">Close</button></div></div>';$('#sheet').hidden=false;setTimeout(function(){var x=$('#sheetBox button.x');if(x)x.focus();animateReceipt();},0);}
+function openReceipt(orderNo){var o=S.orders.filter(function(x){return x.no===orderNo;})[0];if(!o)return;$('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">×</button><div class="receipt-modal"><div class="receipt-print-area">'+buildInvoice(o)+'</div><div class="r-actions" style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="btn" data-act="rprint">🖨️ Print / PDF</button><button class="btn ghost" data-act="rsave">💾 Save PDF</button><button class="btn ghost" data-act="rshare">📤 Share App</button><button class="btn ghost" data-act="close">Done</button></div></div>';$('#sheet').hidden=false;setTimeout(function(){var x=$('#sheetBox button.x');if(x)x.focus();},0);}
 function printReceipt(){window.print();}
-function copyReceipt(){var orderNo=document.getElementById('rcpt-no');if(!orderNo)return;var o=S.orders.filter(function(x){return x.no===orderNo.textContent;})[0];if(!o)return;var text=slipText({no:o.no,items:o.items.map(function(i){return {name:i.name,size:i.size,q:i.q,price:i.price,pre:i.pre};}),disc:o.disc,ship:o.ship,speed:o.speed,courier:o.courier,track:o.track,name:o.cust.name,phone:o.cust.phone,region:(o.cust.prov||'')+(o.cust.city||''),addr:o.cust.addr,pay:o.pay,wechat:o.cust.wechat,note:o.note});copy(text,'Receipt text copied');}
+function copyReceipt(){var o=S.orders.filter(function(x){return x.no===document.getElementById('rcpt-no')?document.getElementById('rcpt-no').textContent:null;})[0];if(!o)return;copy(orderMsg(o),'Receipt text copied');}
 
 function arow(p){
   return '<div class="arow"><div class="ah">'+art(p,'mini')+'<b>'+esc(title(p))+'</b></div>'+
@@ -1093,11 +1185,11 @@ var A={
     if(t.dataset.armed){S.products=S.products.filter(function(p){return p.id!==t.dataset.id;});S.cart=S.cart.filter(function(l){return l.id!==t.dataset.id;});save();render();toast('Product deleted');return;}
     t.dataset.armed='1';t.textContent='Tap again to delete';setTimeout(function(){if(t.isConnected){delete t.dataset.armed;t.textContent='Delete product';}},3000);},
   addcoupon:function(){
-    var code=($('#cc-code').value||'').trim().toUpperCase(),val=parseFloat($('#cc-val').value),min=parseFloat($('#cc-min').value)||0;
+    var code=($('#cc-code').value||'').trim().toUpperCase(),val=parseFloat($('#cc-val').value),min=parseFloat($('#cc-min').value)||0,tag=$('#cc-tag')?$('#cc-tag').value.trim().toUpperCase():'',act=$('#cc-active')?$('#cc-active').checked!==false:true;
     if(!code||isNaN(val)||val<=0){toast('Enter a code and a value');return;}
     S.settings.coupons=S.settings.coupons.filter(function(c){return c.code.toUpperCase()!==code;});
-    S.settings.coupons.push({code:code,type:$('#cc-type').value,value:val,min:min});save();render();toast('Coupon saved');},
-  delcoupon:function(t){S.settings.coupons.splice(parseInt(t.dataset.i,10),1);save();render();},
+    S.settings.coupons.push({code:code,type:$('#cc-type').value,value:val,min:min,active:act,tag:tag});save();render();toast('Coupon saved');},
+  delcoupon:function(t){var c=S.settings.coupons[parseInt(t.dataset.i,10)];if(c&&(c.code==='VIP15'||c.code==='NEWUSER10')&&!confirm('Delete the '+c.code+' coupon? Customers will no longer see it.'))return;S.settings.coupons.splice(parseInt(t.dataset.i,10),1);save();render();toast('Coupon deleted');},
   export:function(){
     var s=Object.assign({},S.settings);delete s.pin;
     var json=JSON.stringify({ver:CATALOG_VER,products:S.products,settings:s},null,1);
@@ -1162,6 +1254,8 @@ document.addEventListener('submit',function(e){
   if(kind==='coupon'){S.coupon=($('#cp').value||'').trim().toUpperCase();save();render();if(S.coupon){var T0=totals();toast(T0.cpn?'Coupon applied':'Coupon not applied');}return;}
   if(kind==='pin'){if($('#pin').value===S.settings.pin){adminOK=true;render();}else{$('#pin-err').textContent='That PIN is not correct.';}return;}
   if(kind==='profile'){
+    if(!S.profile.newuserClaimed&&!S.settings.coupons.some(function(c){return c.code.toUpperCase()==='NEWUSER10'})&&!confirm('A 10% NEWUSER coupon will be added to your account. Add it?')){S.profile.newuserClaimed=true;save();return;}
+    if(!S.profile.newuserClaimed){S.settings.coupons=S.settings.coupons.filter(function(c){return c.code.toUpperCase()!=='NEWUSER10'});S.settings.coupons.push({code:'NEWUSER10',type:'pct',value:10,min:0,active:true,tag:'NEWUSER'});S.profile.newuserClaimed=true;toast('NEWUSER10 coupon added to your account');}
     S.profile={name:$('#pf-name').value.trim(),phone:$('#pf-phone').value.trim(),wechat:$('#pf-wechat').value.trim(),prov:$('#pf-prov').value,city:$('#pf-city').value.trim(),addr:$('#pf-addr').value.trim()};
     save();toast('Details saved');return;
   }
@@ -1181,11 +1275,12 @@ document.addEventListener('submit',function(e){
     if(err){$('#ck-err').textContent=err;return;}
     var T=totals();if(!T.lines.length){go('cart');return;}
     var d=new Date(),yy=String(d.getFullYear()).slice(2),mm=('0'+(d.getMonth()+1)).slice(-2),dd=('0'+d.getDate()).slice(-2);
-    var o={no:'DB'+yy+mm+dd+'-'+Math.random().toString(36).slice(2,6).toUpperCase(),ts:Date.now(),status:'Placed',cust:c,
+    var o={no:'DB'+yy+mm+dd+'-'+Math.random().toString(36).slice(2,6).toUpperCase(),ts:Date.now(),status:'Payment Pending',cust:c,
       pay:(f.querySelector('input[name="pay"]:checked')||{}).value||PAYS[0],note:$('#ck-note').value.trim(),
       items:T.lines.map(function(l){return {id:l.p.id,name:title(l.p),size:l.p.size,q:l.q,price:l.p.price,pre:l.p.st==='pre'};}),
+      offerDisc:T.offerDisc||0,
       sub:T.sub,disc:T.disc,coupon:T.cpn?T.cpn.code:'',speed:S.speed,courier:'',track:'',ship:T.ship,bill:billable(T.w),total:T.total,weight:T.w};
-    S.orders.push(o);S.profile=c;S.cart=[];S.coupon='';lastOrder=o.no;save();go('done');
+    (function(){var f0=psEl.files[0];var rd=new FileReader();var fin=function(){S.orders.push(o);S.profile=c;S.cart=[];S.coupon='';lastOrder=o.no;save();go('done');};rd.onload=function(){var im=new Image();im.onload=function(){try{var k=Math.min(1,900/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(im.width*k));cv.height=Math.max(1,Math.round(im.height*k));cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);o.payShot=cv.toDataURL('image/jpeg',.72);}catch(x){o.payShot='';}fin();};im.onerror=function(){o.payShot='';fin();};im.src=rd.result;};rd.onerror=function(){o.payShot='';fin();};rd.readAsDataURL(f0);})();
   }
 });
 
@@ -1196,6 +1291,7 @@ var R0=loadSaved()||{};
 S.reviews=R0.reviews||[];S.visits=R0.visits||{};S.ledger=R0.ledger||[];
 S.ghost=Object.assign({days:[],coins:0,picks:{},clicks:{},claimed:false},R0.ghost||{});
 S.settings.members=S.settings.members||[];
+if(!S.settings.coupons.some(function(c){return c.code.toUpperCase()==='VIP15';}))S.settings.coupons.push({code:'VIP15',type:'pct',value:15,min:0,active:true,tag:'VIP'});
 function ymd(d){d=d||new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
 try{if(!sessionStorage.getItem('bzv')){sessionStorage.setItem('bzv','1');S.visits[ymd()]=(S.visits[ymd()]||0)+1;save();}}catch(e){}
 
@@ -1340,12 +1436,17 @@ function booksHTML(){
 function memHTML(){
   var m=S.settings.members;
   return '<div class="panel"><h2>Loyalty members</h2><p class="note">Silver \u00a5500 \u00b7 Golden \u00a5800 \u00b7 Platinum \u00a51000 spent since 2024. Add a member and a coupon code (created for you).</p><div class="fgrid">'+fld('m-name','Name','text','','')+fld('m-phone','Phone','tel','','inputmode="tel"')+fld('m-spent','Spent since 2024 (\u00a5)','number','','step="1" min="0"')+fld('m-code','Special coupon code','text','','')+fld('m-pct','Coupon % off','number','5','step="1" min="1" max="90"')+'</div><div class="actions"><button class="btn sm" data-act="addmem">Save member</button></div></div>'+
-   '<div class="panel"><h2>Members ('+m.length+')</h2>'+(m.length?m.map(function(x,i){var t=tier(x.spent);return '<div class="crow"><span><b>'+esc(x.name)+'</b> \u00b7 '+esc(x.phone)+' \u00b7 '+money(x.spent)+' \u00b7 '+(t?t.e+' '+t.n:'No level yet')+(x.coupon?' \u00b7 '+esc(x.coupon):'')+'</span><button class="btn sm ghost danger" data-act="delmem" data-i="'+i+'">Delete</button></div>';}).join(''):'<p class="note">No members yet.</p>')+'</div>'+
+   '<div class="panel"><h2>Members ('+m.length+')</h2>'+(m.length?m.map(function(x,i){var t=tier(x.spent);return '<div class="crow"><span><b>'+esc(x.name)+'</b> \u00b7 '+esc(x.phone)+' \u00b7 '+money(x.spent)+' \u00b7 '+(t?t.e+' '+t.n:'No level yet')+(x.coupon?' \u00b7 '+esc(x.coupon):'')+'</span><button class="btn sm ghost danger" data-act="verifycust" data-i="'+i+'">Verify</button><button class="btn sm ghost danger" data-act="delmem" data-i="'+i+'">Delete</button></div>';}).join(''):'<p class="note">No members yet.</p>')+'</div>'+
    '<div class="panel"><h2>Festival offer</h2><label class="fld"><span>Mode</span><select id="evm">'+[['auto','Automatic by festival dates'],['on','Always on'],['off','Off']].map(function(x){return '<option value="'+x[0]+'"'+((S.settings.evMode||'auto')===x[0]?' selected':'')+'>'+x[1]+'</option>';}).join('')+'</select></label></div>';
 }
-var XT=[['books','Business'],['members','Members']],oad=V.admin;
+var XT=[['books','Business'],['members','Members'],['customers','Customers'],['coupons','Coupons & Offers']],oad=V.admin;
 V.admin=function(){
   var h=oad();if(!adminOK)return h;
+  if(adminTab==='customers'){
+    var i=h.indexOf('</div>',h.indexOf('class="atabs"'));
+    var btn=XT.map(function(t){return '<button class="chip'+(adminTab===t[0]?' on':'')+'" data-act="atab" data-id="'+t[0]+'">'+t[1]+'</button>';}).join('');
+    return h.slice(0,i)+btn+'</div>'+custHTML()+'</div>';
+  }
   var at=adminTab==='books'||adminTab==='members',i=h.indexOf('</div>',h.indexOf('class="atabs"'));
   var btn=XT.map(function(t){return '<button class="chip'+(adminTab===t[0]?' on':'')+'" data-act="atab" data-id="'+t[0]+'">'+t[1]+'</button>';}).join('');
   var head=h.slice(0,i)+btn+'</div>';
@@ -1377,7 +1478,7 @@ Object.assign(A,{
   dled:function(t){S.ledger=S.ledger.filter(function(x){return x.id!==t.dataset.id;});save();render();},
   addmem:function(){var n=$('#m-name').value.trim(),ph=$('#m-phone').value.trim(),sp=parseFloat($('#m-spent').value),cd=$('#m-code').value.trim().toUpperCase(),pc=parseFloat($('#m-pct').value)||5;
     if(!n||dg(ph).length<8||isNaN(sp)){toast('Enter name, phone and amount');return;}
-    S.settings.members=S.settings.members.filter(function(x){return dg(x.phone)!==dg(ph);});S.settings.members.push({name:n,phone:ph,spent:sp,coupon:cd});
+    S.settings.members=S.settings.members.filter(function(x){return dg(x.phone)!==dg(ph);});S.settings.members.push({name:n,phone:ph,spent:sp,coupon:cd,wechat:'',verified:false,verifiedTs:0});
     if(cd){S.settings.coupons=S.settings.coupons.filter(function(c){return c.code.toUpperCase()!==cd;});S.settings.coupons.push({code:cd,type:'pct',value:pc,min:0});}
     save();render();toast('Member saved');},
   delmem:function(t){S.settings.members.splice(+t.dataset.i,1);save();render();},
@@ -1436,7 +1537,7 @@ A.rvsub=function(){var tx=$('#rv-txt').value.trim();if(!tx){toast('Please write 
 /* footer contact */
 var ICW='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-3.3-.8-2.7-1.2-4.4-3.9-4.5-4.1-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.4-.4.4c-.1.1-.3.3-.1.5.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.5-.1l.7-.9c.2-.2.3-.2.5-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>';
 var ICC='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><ellipse cx="9" cy="9" rx="7" ry="6" fill="currentColor"/><ellipse cx="15.5" cy="14.5" rx="6.5" ry="5" fill="currentColor" opacity=".75"/></svg>';
-foot=function(){return '<footer class="foot"><div class="wrap"><svg id="deshi-mark" class="mark-svg" width="28" height="28" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><title>Deshi Bazaar mark</title><desc>Abstract geometric mark: a rhombus crossed by a horizontal pill bar.</desc><polygon points="128,36 220,128 128,220 36,128"/><rect x="16" y="112" width="224" height="32" rx="16" ry="16"/></svg><b>Deshi Bazaar \u00b7 \u09a6\u09c7\u09b6\u09bf \u09ac\u09be\u099c\u09be\u09b0</b><p>Taste of Bangladesh brings your plate.</p><p>Address: Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China</p><p>Hotline: +8618551702750</p><p style="margin-top:10px">Contact or inquiry:</p><div class="ct"><a class="cb" href="https://wa.me/8618551702750" target="_blank" rel="noopener">'+ICW+' WhatsApp +8618551702750</a><button class="cb" data-act="copy" data-t="+8618551702750">'+ICC+' WeChat +8618551702750</button></div><button class="rm" data-act="go" data-v="terms">Terms &amp; Conditions</button></div></footer>';};
+foot=function(){return '<footer class="foot"><div class="wrap"><svg id="deshi-mark" class="mark-svg" width="28" height="28" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><title>Deshi Bazaar mark</title><desc>Bold geometric retail mark: green badge with interlocked gold-and-white DB monogram and rice-grain accent.</desc><rect x="8" y="8" width="240" height="240" rx="40" fill="#0f5c39"/><rect x="14" y="14" width="228" height="228" rx="36" fill="none" stroke="#f2b53c" stroke-width="5"/><rect x="58" y="62" width="30" height="130" fill="#f2b53c"/><path d="M88 62 H120 A65 65 0 0 1 120 192 H88 V160 H118 A33 33 0 0 0 118 94 H88 Z" fill="#ffffff"/><rect x="140" y="62" width="30" height="130" fill="#ffffff"/><path d="M170 62 H204 A46 46 0 0 1 204 138 H170 V110 H200 A18 18 0 0 0 200 88 H170 Z" fill="#f2b53c"/><path d="M170 110 H210 A41 41 0 0 1 210 192 H170 V160 H206 A13 13 0 0 0 206 138 H170 Z" fill="#f2b53c"/><ellipse cx="62" cy="38" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 62 38)"/><ellipse cx="78" cy="30" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 78 30)"/><ellipse cx="94" cy="23" rx="15" ry="7.5" fill="#f2b53c" transform="rotate(-30 94 23)"/></svg><b>Deshi Bazaar \u00b7 \u09a6\u09c7\u09b6\u09bf \u09ac\u09be\u099c\u09be\u09b0</b><p>Taste of Bangladesh brings your plate.</p><p>Address: Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China</p><p>Hotline: +8618551702750</p><p style="margin-top:10px">Contact or inquiry:</p><div class="ct"><a class="cb" href="https://wa.me/8618551702750" target="_blank" rel="noopener">'+ICW+' WhatsApp +8618551702750</a><button class="cb" data-act="copy" data-t="+8618551702750">'+ICC+' WeChat +8618551702750</button></div><button class="rm" data-act="go" data-v="terms">Terms &amp; Conditions</button></div></footer><div class="copyrightbar">Copyright © 2026 Deshi Bazaar. All rights reserved.</div>';};
 
 /* shorter shopping calculator with coupon and discounts */
 V.calc=function(){return '<div class="wrap page"><h1>Shopping calculator</h1><div class="panel" style="max-width:640px;margin-inline:auto">'+builder('cc').replace('<div id="cc-out"></div>','<label class="fld" style="margin-top:10px"><span>Coupon code (optional)</span><input id="cc-cpn" value="'+esc(B.cc.coupon||'')+'" autocomplete="off" style="text-transform:uppercase"></label><div id="cc-out"></div>')+'</div></div>'+foot();};
@@ -1466,7 +1567,7 @@ A.wkclaim=function(){clearInterval(wkT);S.settings.coupons=S.settings.coupons.fi
 /* accounts */
 function loginView(){var reg=authMode==='reg';
   return '<div class="wrap page"><div class="panel" style="max-width:440px;margin-inline:auto"><div class="actions" style="margin:0 0 12px"><button class="chip'+(reg?'':' on')+'" data-act="amode" data-v="login">Login</button><button class="chip'+(reg?' on':'')+'" data-act="amode" data-v="reg">Register</button></div><form data-form="auth" novalidate><div class="fgrid" style="grid-template-columns:1fr">'+
-   fld('au-phone','Chinese mobile number (11 digits)','tel','','inputmode="tel" autocomplete="tel" placeholder="e.g. 18551702750"')+(reg?fld('au-nick','Nickname (2-12 characters)','text','','maxlength="12" autocomplete="nickname"'):'')+fld('au-pw','Password (6+ characters)','password','','autocomplete="'+(reg?'new-password':'current-password')+'"')+(reg?fld('au-pw2','Confirm password','password','','autocomplete="new-password"'):'')+'</div><p class="err" id="au-err"></p><button class="btn block" type="submit">'+(reg?'Create account':'Log in')+'</button></form><p class="note" style="margin-top:10px">Mainland China mobile numbers only. Accounts are saved on this device.</p></div></div>'+foot();}
+   fld('au-phone','Chinese mobile number (11 digits)','tel','','inputmode="tel" autocomplete="tel" placeholder="Your 11-digit number"')+(reg?fld('au-nick','Nickname (2-12 characters)','text','','maxlength="12" autocomplete="nickname"'):'')+fld('au-pw','Password (6+ characters)','password','','autocomplete="'+(reg?'new-password':'current-password')+'"')+(reg?fld('au-pw2','Confirm password','password','','autocomplete="new-password"'):'')+'</div><p class="err" id="au-err"></p><button class="btn block" type="submit">'+(reg?'Create account':'Log in')+'</button></form><p class="note" style="margin-top:10px">Mainland China mobile numbers only. Accounts are saved on this device.</p></div></div>'+foot();}
 V.login=loginView;
 var ome=V.me;
 V.me=function(){
@@ -1493,6 +1594,7 @@ document.addEventListener('submit',function(e){
   var er=$('#au-err'),ph=cnPhone($('#au-phone').value),pw=$('#au-pw').value,reg=authMode==='reg';
   if(!ph){er.textContent='Enter a valid Chinese mobile number (11 digits, starts with 1).';return;}
   if(pw.length<6){er.textContent='Password needs at least 6 characters.';return;}
+  if(reg&&(!/[A-Z]/.test(pw)||(pw.match(/\d/g)||[]).length<2||!/[^A-Za-z0-9]/.test(pw))){er.textContent='Password needs 6+ chars, 1 capital, 2+ numbers, 1 special symbol.';return;}
   var u=S.users.filter(function(x){return x.phone===ph;})[0];
   if(reg){var nk=$('#au-nick').value.trim();
     if(nk.length<2){er.textContent='Please enter a nickname (2-12 characters).';return;}
@@ -1663,10 +1765,395 @@ Object.assign(A,{
 });
 PQ[2]=function(){return '<h2>🍛 Dopamine Bengali Kitchen</h2><p class="note" style="margin:8px 0">Craving something? Order a Bengali dish for ¥0 and watch the rider race to your door.</p><div class="actions"><button class="btn gold" data-act="go" data-v="play">Start craving</button></div>';};
 
+/* ===== round 5 ===== */
+var SHOPB={brand:'Deshi Bazaar (\u09a6\u09c7\u09b6\u09bf \u09ac\u09be\u099c\u09be\u09b0)',addr:'Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China',hotline:'+8618551702750'};
+function gv(v,d){return v==null?d:v;}
+function vipTierOf(phone){
+  var d=dg(phone);if(!d||d.length<8)return {name:'None',spend:0};
+  var cut=Date.now()-180*86400000,s=0;
+  S.orders.forEach(function(o){
+    if(o.status!=='Cancelled'&&o.ts>=cut&&dg(o.cust&&o.cust.phone)===d)s+=o.total||0;});
+  s=Math.round(s*100)/100;
+  return {name:s>=3000?'Platinum':s>=2000?'Golden':s>=1000?'Silver':'None',spend:s};
+}
+function tierMeta(name){
+  var M={None:{icon:'\ud83d\udc64',pts:0,next:1000},Silver:{icon:'\ud83e\udd48',pts:100,next:2000},Golden:{icon:'\ud83e\udd47',pts:200,next:3000},Platinum:{icon:'\ud83d\udd0e',pts:300,next:0}};
+  var m=M[name]||M.None,u=me();
+  var spend=(u?vipTierOf(u.phone):vipTierOf(S.profile.phone)).spend;
+  return {icon:m.icon,pts:m.pts,next:m.next,threshold:m.next,progress:m.next?Math.min(1,spend/m.next):1};
+}
+function custPhone(){var u=me();return u?u.phone:(S.profile.phone||'');}
+function isVerified(){
+  var d=dg(custPhone());if(!d||d.length<8)return false;
+  var m=(S.settings.members||[]).filter(function(x){return dg(x.phone)===d;})[0];
+  return !!(m&&m.verified===true);
+}
+function offerLines(lines){
+  var d=0;
+  (lines||[]).forEach(function(l){
+    var p=l.p;
+    var rate=/custard|firni|faluda/i.test((p.n||'')+' '+(p.bn||''))?0.5:(['rice','blend','sweet','snack'].indexOf(p.cat)>-1?0.10:0);
+    if(rate>0)d+=Math.round(p.price*l.q*rate*100)/100;});
+  return Math.round(d*100)/100;
+}
+function rActions(){
+  return '<div class="r-actions" style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="btn" data-act="rprint">\ud83d\udda8\ufe0f Print / PDF</button><button class="btn ghost" data-act="rsave">\ud83d\udcbe Save PDF</button><button class="btn ghost" data-act="rshare">\ud83d\udce4 Share App</button><button class="btn ghost" data-act="close">Done</button></div>';
+}
+function docFrame(o,tag){
+  var lines=o.items.map(function(i,idx){return '<div class="ri-line"><span class="n">'+(idx+1)+'. '+esc(i.name)+' \u00b7 '+esc(i.size)+' \u00d7 '+i.q+'</span><span>'+money(i.price*i.q)+'</span></div>';}).join('');
+  var meta='<div class="ri-meta"><div><span class="m">Order</span><b>'+esc(o.no)+'</b></div><div><span class="m">Date</span><b>'+fmtDate(o.ts)+'</b></div><div><span class="m">Status</span><b>'+esc(L(o.status)||o.status)+'</b></div><div><span class="m">Payment</span><b>'+esc(o.pay||'')+'</b></div><div><span class="m">Customer</span><b>'+esc(o.cust.name)+'</b></div><div><span class="m">WeChat</span><b>'+esc(o.cust.wechat||'')+'</b></div></div>';
+  var addr=[o.cust.prov,o.cust.city,o.cust.addr].filter(Boolean).join(', ');
+  return '<div class="receipt-invoice"><div class="ri-head"><span class="ri-tag">'+tag+'</span><b>'+SHOPB.brand+'</b><small>Taste of Bangladesh brings your plate</small></div>'+meta+'<hr class="ri-dash"><div class="ri-lines">'+lines+'</div>'+(tag==='PAYMENT RECEIPT'?riTotals(o):'')+'<hr class="ri-dash"><div class="ri-foot"><span>Ship to: '+esc(addr)+'</span><span>'+esc(o.cust.phone)+(o.cust.wechat?' \u00b7 WeChat: '+esc(o.cust.wechat):'')+'</span><b>'+SHOPB.addr+'</b><b>Hotline: '+SHOPB.hotline+'</b><span>Thank you for your order!</span></div></div>';
+}
+function riTotals(o){
+  var r='<hr class="ri-dash"><div class="ri-tot"><div><span>Subtotal</span><span>'+money(o.sub||0)+'</span></div>';
+  var od=o.offerDisc||0;
+  if(od>0)r+='<div class="save"><span>Weekend offer</span><span>\u2212'+money(od)+'</span></div>';
+  var cpn=(o.disc||0)-od;
+  if(cpn>0)r+='<div><span>Coupon '+(o.coupon?esc(o.coupon):'')+'</span><span>\u2212'+money(cpn)+'</span></div>';
+  r+='<div><span>Delivery</span><span>'+money(o.ship||0)+'</span></div><div class="grand"><span>Grand total</span><span>'+money(o.total||0)+'</span></div></div>';
+  return r;
+}
+function buildInvoice(o){return docFrame(o,'PAYMENT RECEIPT');}
+function buildVoucher(o){return docFrame(o,'ORDER VOUCHER');}
+function openDocSheet(o,which){
+  $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><div class="receipt-modal"><div class="receipt-print-area">'+(which==='inv'?buildInvoice(o):buildVoucher(o))+'</div>'+rActions()+'</div>';
+  $('#sheet').hidden=false;
+}
+function statusSteps(o){
+  if(o.status==='Cancelled')return '<div class="rmk">Order cancelled</div>';
+  var i=stIdx(o.status),steps=[['Payment Pending',0],['Payment Confirmed',1],['Order Confirmed',2],['Order Shipped',3],['Order Delivered',4],['Order Completed',5]],h='<div class="status-track">';
+  steps.forEach(function(x,k){
+    if(k>0)h+='<div class="st-connector'+(i>=x[1]?' on':'')+'"></div>';
+    h+='<button class="st-track-step st-step-'+k+(i>=x[1]?' on':'')+'" data-act="astatus" data-ono="'+esc(o.no)+'" data-step="'+(k+1)+'"><i>'+(i>=x[1]?'&#10003;':(k+1))+'</i><b>'+x[0]+'</b></button>';});
+  return h+'</div>';
+}
+function couponsHTML(){
+  var live=isWk(),cs=S.settings.coupons;
+  return '<div class="panel"><h2>Weekend offer</h2><p style="font:800 1.05rem var(--f-disp);color:'+(live?'var(--green)':'var(--muted)')+'">'+(live?'LIVE now':'Off')+'</p><p class="note">Saturday &amp; Sunday: 10% off rice, masala packs, sweets &amp; snacks \u00b7 50% off custard, firni &amp; faluda. Runs automatically in every customer\u2019s cart totals \u2014 no code needed.</p></div>'+
+   '<div class="panel"><h2>Coupons &amp; offers</h2>'+(cs.length?cs.map(function(c,i){
+      return '<div class="coupon-row"><label class="chk" style="display:flex;align-items:center;gap:4px"><input type="checkbox" data-act="ctoggle" data-i="'+i+'"'+(c.active!==false?' checked':'')+' aria-label="Activate '+esc(c.code)+'"></label><span class="cr-code">'+esc(c.code)+'</span>'+(c.tag?'<span class="cr-tag">'+esc(c.tag)+'</span>':'')+'<span class="cr-val">'+(c.type==='pct'?c.value+'% off':money(c.value)+' off')+' \u00b7 over '+money(c.min||0)+'</span><span class="cr-actions"><button class="btn sm ghost" data-act="vcoupon" data-i="'+i+'">Edit</button><button class="btn sm ghost danger" data-act="delcoupon" data-i="'+i+'">Delete</button></span></div>';}).join(''):'<p class="note">No coupons yet. Add one below.</p>')+'</div>'+
+   '<div class="panel"><h2>'+(ccEditI>-1?'Edit coupon':'Add coupon')+'</h2><div class="fgrid"><label class="fld"><span>Code</span><input id="cc-code" value="'+esc(ccEditI>-1?S.settings.coupons[ccEditI].code:'')+'" autocomplete="off"></label><label class="fld"><span>Type</span><select id="cc-type">'+(ccEditI>-1?['pct','flat'].map(function(x){return '<option value="'+x+'"'+(S.settings.coupons[ccEditI].type===x?' selected':'')+'">'+(x==='pct'?'Percent off':'Yuan off')+'</option>';}).join(''):'<option value="pct">Percent off</option><option value="flat">Yuan off</option>')+'</select></label><label class="fld"><span>Value</span><input id="cc-val" type="number" step="0.5" min="0" inputmode="decimal" value="'+(ccEditI>-1?S.settings.coupons[ccEditI].value:'')+'"></label><label class="fld"><span>Minimum order (\u00a5)</span><input id="cc-min" type="number" step="1" min="0" inputmode="decimal" value="'+(ccEditI>-1?gv(S.settings.coupons[ccEditI].min,0):'')+'"></label><label class="fld"><span>Tag (optional)</span><input id="cc-tag" placeholder="e.g. VIP, MEMBER" value="'+(ccEditI>-1?gv(S.settings.coupons[ccEditI].tag,''):'')+'"></label><label class="fld" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="cc-active" style="width:18px;height:18px"'+(ccEditI>-1&&S.settings.coupons[ccEditI].active===false?'':' checked')+'><span>Active (visible to customers)</span></label></div><div class="actions" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="'+(ccEditI>-1?'editedcoupon':'addcoupon')+'">'+(ccEditI>-1?'Save changes':'Add coupon')+'</button>'+(ccEditI>-1?'<button class="btn sm ghost" data-act="vcancel">Cancel</button>':'')+'</div></div>';
+}
+function vipPopCheck(){
+  if(!isWk())return;
+  if(!isVerified())return;
+  if(vipTierOf(custPhone()).name==='None')return;
+  if(sessionStorage.getItem('vipPop'))return;
+  var sh=$('#sheet');if(!sh||!sh.hidden)return;
+  var m=tierMeta(vipTierOf(custPhone()).name);
+  $('#sheetBox').innerHTML='<button class="x" data-act="vipclose" aria-label="Close">\u00d7</button><div class="vip-pop"><h2 style="margin:0">\ud83d\udd0e '+esc(m.icon)+' '+esc(vipTierOf(custPhone()).name)+' exclusive weekend welcome</h2><p class="vp-note">As our '+esc(vipTierOf(custPhone()).name)+' customer you get 15% off this weekend. Use the code below in your cart.</p><div class="vp-code">VIP15</div><div class="actions" style="gap:8px"><button class="btn gold" data-act="vipapply">Apply VIP15</button><button class="btn ghost" data-act="vipclose">Close</button></div></div>';
+  sh.hidden=false;
+}
+/* --- header account icon + weekend strip --- */
+(function(){
+  var pill=$('#pill');
+  if(pill)$('#pill').insertAdjacentHTML('beforebegin','<button class="ib" id="acctIco" data-act="acctmenu" aria-label="VIP account"><span class="tier-ring" id="trRing"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tr-bg" cx="22" cy="22" r="18"></circle><circle class="tr-fg" id="trFg" cx="22" cy="22" r="18"></circle></svg><span class="tr-ico" id="trIco">\ud83d\udc64</span></span></button>');
+  document.querySelector('header.top').insertAdjacentHTML('afterend','<button class="notif-bar" id="wkbar" data-act="go" data-v="shop" hidden>\u26a1 Weekend offer live: 10% off rice \u00b7 masala \u00b7 sweets \u00b7 snacks \u2014 50% off custard, firni &amp; faluda</button>');
+})();
+if(!S.settings.coupons.some(function(c){return c.code.toUpperCase()==='VIP15';}))S.settings.coupons.push({code:'VIP15',type:'pct',value:15,min:0,active:true,tag:'VIP'});
+/* --- totals: weekend offer before coupon, festival after --- */
+var t5=totals;
+totals=function(){
+  var T=t5(),od=T.lines.length&&isWk()?offerLines(T.lines):0;
+  T.offerDisc=od;
+  if(od>0){
+    var base=T.sub-od,oldCoupon=0;
+    if(T.cpn&&!T.cpn.pseudo)oldCoupon=T.cpn.type==='pct'?T.sub*T.cpn.value/100:Math.min(T.cpn.value,T.sub);
+    var coupon=T.cpn&&!T.cpn.pseudo?(T.cpn.type==='pct'?base*T.cpn.value/100:Math.min(T.cpn.value,base)):0;
+    var festival=T.disc-oldCoupon;
+    T.cpn=T.cpn&&T.cpn.pseudo?{pseudo:true,code:('Weekend 10/50% \u00b7 '+(T.cpn.code||'')).trim()}:T.cpn;
+    T.disc=Math.round((coupon+festival)*100)/100;
+    T.net=T.sub-od-T.disc;
+    T.total=T.net+T.ship;
+  }
+  return T;
+};
+/* --- cart + checkout: weekend offer line --- */
+function sumPatch(h){
+  var T=totals();
+  if(T.offerDisc>0)h=h.replace('<div class="sum"', '<div class="sum" style="background:var(--green);color:var(--btn-fg)"><span>\u26a1 Weekend offer</span><span>\u2212'+money(T.offerDisc)+'</span></div><div class="sum"');
+  return h;
+}
+var vc5=V.cart;
+V.cart=function(){return sumPatch(vc5());};
+var vcck5=V.checkout;
+V.checkout=function(){return sumPatch(vcck5());};
+/* --- home: weekend slide + strip handled in chrome --- */
+var vh5=V.home;
+V.home=function(){
+  var h=vh5();
+  if(isWk())h=h.replace('</div><div class="dots"','<div class="slide offer-slide"><div><h3>\u26a1 Weekend offer</h3><p>10% off rice, masala, sweets &amp; snacks \u00b7 50% off custard, firni &amp; faluda</p></div><button class="btn sm" data-act="go" data-v="shop">Shop the deal</button></div></div><div class="dots"');
+  return h;
+};
+/* --- V.done: doc buttons + WeChat --- */
+var vd5=V.done;
+V.done=function(){
+  var h=vd5();
+  if(h.indexOf('data-act="copymsg"')>-1){
+    var o=S.orders.filter(function(x){return x.no===lastOrder;})[0];
+    if(o)h=h.replace('<button class="btn action-btn" data-act="copymsg" data-id="'+esc(o.no)+'">Copy message</button></div>',
+      '<button class="btn action-btn" data-act="copymsg" data-id="'+esc(o.no)+'">Copy message</button>'+
+      '<button class="doc-btn" data-act="doc" data-id="'+esc(o.no)+'" data-which="inv">\ud83d\udcc4 Payment Receipt</button>'+
+      '<button class="doc-btn" data-act="doc" data-id="'+esc(o.no)+'" data-which="vou">\ud83d\udcc4 Order Voucher</button>'+
+      '<button class="btn gold action-btn" data-act="wechatsend" data-id="'+esc(o.no)+'">\ud83d\udc41 WeChat: copy &amp; send</button></div>');
+  }
+  return h;
+};
+/* --- ordCard admin: status track --- */
+var oc5=ordCard;
+ordCard=function(o,adm){
+  var h=oc5(o,adm);
+  if(adm)h=h.replace('<div class="fgrid">',statusSteps(o)+'<div class="fgrid">');
+  return h;
+};
+/* --- V.me: VIP panel --- */
+var vm5=V.me;
+V.me=function(){
+  var h=vm5();
+  if(h.indexOf('login')===-1){
+    var t=vipTierOf(custPhone()),v=isVerified(),m=tierMeta(t.name),anchor='<div class="panel"><h2>My orders</h2>';
+    if(h.indexOf(anchor)>-1){
+      var panel='';
+      if(v&&t.name!=='None'){
+        panel='<div class="panel" style="border-color:var(--gold)"><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="vip-badge '+t.name.toLowerCase()+'">'+m.icon+' '+esc(t.name)+' customer</span><b style="font:800 1.1rem var(--f-disp)">'+m.pts+' pts</b><span class="note">\u00a5'+num(t.spend)+' in the last 180 days</span></div>'+(m.next?'<div class="bar" style="margin-top:10px"><i style="width:'+Math.round(m.progress*100)+'%"></i></div><p class="note">\u00a5'+num(Math.max(0,m.next-t.spend))+' to the next level ('+esc(t.name==='Silver'?'Golden':t.name==='Golden'?'Platinum':'') +')' :'<p class="note">Top level \u2014 enjoy your \ud83d\udd0e status!</p>')+'</div>';
+      }else if(t.name!=='None'){
+        panel='<div class="panel"><h2>'+m.icon+' You\u2019re a \u00a5'+num(t.spend)+' spender \u2014 verify to unlock '+esc(t.name)+' perks</h2><p class="note">Ask the shop to verify you on WeChat and your '+esc(t.name)+' badge, points and 15% VIP coupon will activate.</p></div>';
+      }else{
+        panel='<div class="panel"><h2>Loyalty</h2><p class="note">Spend \u00a51000 in 180 days to reach Silver (100 pts), \u00a52000 for Golden (200 pts) and \u00a53000 for Platinum (300 pts \u00b7 \ud83d\udd0e). Verified customers get the VIP15 coupon.</p></div>';
+      }
+      h=h.replace(anchor,panel+anchor);
+    }
+  }
+  return h;
+};
+/* --- card: pre-order badge on art --- */
+var card5=card;
+card=function(p){
+  var h=card5(p);
+  if(p.st==='pre')h=h.replace(/<span class="c-art[^>]*>/,function(m){return m+'<span class="off pre-badge">Pre-order</span>';});
+  return h;
+};
+/* --- updateChrome: acctIco ring + wkbar --- */
+var uc5=updateChrome;
+updateChrome=function(){
+  uc5();
+  var ring=$('#trRing'),ico=$('#trIco'),icoBtn=$('#acctIco'),wk=$('#wkbar'),nb=$('#nbar');
+  if(ico){
+    var ph=custPhone(),v=isVerified(),t=vipTierOf(ph),m=tierMeta(t.name);
+    ico.textContent=m.icon;
+    var fg=$('#trFg');
+    if(fg)fg.setAttribute('stroke-dashoffset',(113.1*(1-(v&&t.name!=='None'?m.progress:0))).toFixed(1));
+    if(ring)ring.classList.toggle('platinum',v&&t.name==='Platinum');
+    if(icoBtn)icoBtn.classList.toggle('platinum',v&&t.name==='Platinum');
+  }
+  if(wk)wk.hidden=!(isWk()&&(!nb||nb.hidden));
+};
+/* --- render hook: VIP popup once per session --- */
+var r5r=render;
+render=function(){
+  r5r();
+  try{vipPopCheck();}catch(e){}
+};
+/* --- admin: Coupons & Offers tab --- */
+var ad5=V.admin;
+V.admin=function(){
+  var h=ad5();
+  if(adminOK&&adminTab==='coupons'){
+    var i=h.indexOf('</div>',h.indexOf('class="atabs"'));
+    if(i>-1)h=h.slice(0,i+6)+couponsHTML()+'</div>';
+  }
+  return h;
+};
+/* --- actions --- */
+var ccEditI=-1;
+Object.assign(A,{
+  acctmenu:function(){
+    ccEditI=-1;
+    var u=me(),ph=u?u.phone:(S.profile.phone||''),t=vipTierOf(ph),v=isVerified(),m=tierMeta(t.name);
+    $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><div class="acct-row" style="align-items:center;padding:8px 0">'+
+      '<span class="tier-ring'+(v&&t.name==='Platinum'?' platinum':'')+'" style="width:52px;height:52px"><svg viewBox="0 0 44 44" style="width:52px;height:52px"><circle class="tr-bg" cx="22" cy="22" r="18"></circle><circle class="tr-fg" cx="22" cy="22" r="18" style="stroke-dashoffset:'+(113.1*(1-(v&&t.name!=='None'?m.progress:0))).toFixed(1)+'"></circle></svg><span class="tr-ico">'+m.icon+'</span></span>'+
+      '<div style="flex:1;min-width:0">'+(v?'<span class="vip-badge '+t.name.toLowerCase()+'">'+m.icon+' '+esc(t.name)+' customer</span>':'<b>'+esc(u?u.nick:'Guest')+'</b><p class="note" style="margin:2px 0">'+(t.name!=='None'?'Not verified yet \u2014 ask the shop.':'No tier yet \u2014 keep shopping!')+'</p>')+'</div></div>'+
+      '<div class="bar" style="margin:8px 0"><i style="width:'+Math.round((v&&t.name!=='None'?m.progress:0)*100)+'%"></i></div>'+
+      '<p class="note">\u00a5'+num(t.spend)+' spent in the last 180 days'+(m.next&&v?' \u00b7 \u00a5'+num(Math.max(0,m.next-t.spend))+' to go':'')+'</p>'+
+      '<div class="actions"><button class="btn" data-act="go" data-v="me">My account</button><button class="btn ghost" data-act="close">Close</button></div>';
+    $('#sheet').hidden=false;
+  },
+  wechatsend:function(t){
+    var o=S.orders.filter(function(x){return x.no===(t.dataset.id||lastOrder);})[0];
+    if(!o)return;
+    var msg=orderMsg(o);
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(msg).then(function(){toast('Order message copied! Please paste it into our WeChat: +86 185 5170 2750');},function(){
+        var el=$('#omsg');if(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);toast('Copy failed \u2014 long-press the message to copy');}});
+    }else{var el2=$('#omsg');if(el2){var r2=document.createRange();r2.selectNodeContents(el2);var s2=getSelection();s2.removeAllRanges();s2.addRange(r2);toast('Long-press the message to copy, then paste it into WeChat');}}
+  },
+  doc:function(t){
+    var o=S.orders.filter(function(x){return x.no===t.dataset.id;})[0];
+    if(o)openDocSheet(o,t.dataset.which||'inv');
+  },
+  rprint:function(){window.print();},
+  rsave:function(){window.print();},
+  rshare:function(){
+    var o=S.orders.filter(function(x){return x.no===lastOrder;})[0]||S.orders[0];
+    if(!o)return;
+    var txt=orderMsg(o);
+    if(navigator.share)navigator.share({title:'Deshi Bazaar \u00b7 '+o.no,text:txt}).catch(function(){copy(txt,'Receipt copied \u2014 share it anywhere!');});
+    else copy(txt,'Receipt copied \u2014 share it anywhere!');
+  },
+  astatus:function(t){
+    var o=S.orders.filter(function(x){return x.no===t.dataset.ono;})[0];
+    if(!o)return;
+    var step=parseInt(t.dataset.step,10),cur=stIdx(o.status),curVis=cur<0?0:cur;
+    var map={1:0,2:1,3:2,4:3,5:4},nv=map[step];
+    if(nv<curVis){toast('Status can only move forward');return;}
+    o.status=step===1?'Payment Pending':step===2?'Payment Confirmed':step===3?'Order Confirmed':step===4?'Order Delivered':'Order Completed';
+    save();render();toast(L(o.status));
+  },
+  verifycust:function(t){
+    var m=(S.settings.members||[])[parseInt(t.dataset.i,10)];
+    if(!m)return;
+    m.verified=!m.verified;m.verifiedTs=m.verified?Date.now():0;
+    save();render();toast(m.verified?m.name+' verified \u2713':m.name+' no longer verified');
+  },
+  vipapply:function(){
+    if(S.coupon&&S.coupon!=='VIP15'){toast('Only one coupon per order');return;}
+    S.coupon='VIP15';save();closeSheet();updateChrome();
+    sessionStorage.setItem('vipPop','1');
+    toast('VIP15 applied \u2014 15% off');
+  },
+  vipclose:function(){
+    sessionStorage.setItem('vipPop','1');
+    closeSheet();
+  },
+  ctoggle:function(t){
+    var c=S.settings.coupons[parseInt(t.dataset.i,10)];
+    if(!c)return;
+    c.active=c.active===false;
+    save();render();toast(c.code+(c.active===false?' turned off':' turned on'));
+  },
+  vcoupon:function(t){
+    ccEditI=parseInt(t.dataset.i,10);render();
+  },
+  vcancel:function(){
+    ccEditI=-1;render();
+  },
+  editedcoupon:function(){
+    if(ccEditI<0)return;
+    var c=S.settings.coupons[ccEditI];
+    var code=($('#cc-code').value||'').trim().toUpperCase(),val=parseFloat($('#cc-val').value),min=parseFloat($('#cc-min').value)||0;
+    if(!code||isNaN(val)||val<=0){toast('Enter a code and a value');return;}
+    S.settings.coupons=S.settings.coupons.filter(function(x){return x!==c;});
+    c.code=code;c.type=$('#cc-type').value;c.value=val;c.min=min;
+    c.tag=($('#cc-tag').value||'').trim().toUpperCase();
+    c.active=$('#cc-active').checked!==false;
+    S.settings.coupons.push(c);
+    ccEditI=-1;save();render();toast('Coupon saved');
+  }
+});
+
+/* ===== round 6: RMB discount, tiered shipping, password rules, customers tab, status names ===== */
+var LAB6={};
+STATUSES=['Payment Pending','Payment Confirmed','Order Confirmed','Order Delivered','Order Completed','Cancelled'];
+var _stIdx0=stIdx;
+stIdx=function(s){if(s==='Cancelled')return -1;return {'Payment Pending':0,'Payment Confirmed':1,'Order Confirmed':2,'Order Delivered':3,'Order Completed':4,'Placed':0,'Paid':1,'Confirmed':1,'Packed':2,'Shipped':3,'ShippedSF':3,'ShippedStd':3,'Received':3,'Delivered':4}[s];};
+var _L0=L;L=function(s){return s;};
+var _tline0=tline;tline=function(o,i){
+  try{
+    var steps=['Payment Pending','Payment Confirmed','Order Confirmed','Order Delivered','Order Completed'];
+    var idx=i==null?stIdx(o.status):i;if(idx<0)idx=0;
+    var h='<ol class="tl">';
+    for(var k=0;k<steps.length;k++){h+='<li class="'+(k<=idx?'dn':'')+(k===idx?' now':'')+'">'+(k<=idx?'&#10003; ':(k+1)+'. ')+steps[k]+'</li>';}
+    h+='</ol>';
+    if(o.remark)h+='<div class="rmk">&#10003; '+esc(o.remark)+'</div>';
+    return h;
+  }catch(x){return '<div class="rmk">'+esc(o.status)+'</div>';}
+};
+
+function custHTML(){
+  var rows=(S.users||[]).map(function(u,i){
+    var tot=S.orders.filter(function(o){return o.cust&&o.cust.phone===u.phone;}).reduce(function(a,o){return a+(o.total||0);},0);
+    var t=vipTierOf(u.phone),meta=tierMeta(t.name);
+    var last=S.orders.filter(function(o){return o.cust&&o.cust.phone===u.phone;}).sort(function(a,b){return b.ts-a.ts;})[0];
+    var addr=last?(function(c){return [c.prov,c.city,c.addr].filter(Boolean).join(', ')||'—';})(last.cust):'—';
+    return '<tr><td><b>'+esc(u.nick)+'</b><br><small>'+esc(u.phone)+'</small></td><td>'+esc(addr)+'</td><td>¥'+money(tot)+'</td><td>'+esc(t.name)+'</td><td>'+meta.pts+'</td><td><button data-act="custedit" data-idx="'+i+'">Edit</button> <button data-act="custreset" data-idx="'+i+'">Reset PW</button></tr>';
+  }).join('');
+  return '<table class="ctable"><thead><tr><th>Customer</th><th>Address</th><th>Total spent</th><th>Tier</th><th>Points</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>';
+}
+A.custedit=function(t){
+  var i=+t.dataset.idx,u=S.users[i];if(!u)return;
+  $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">×</button><h2>Edit customer</h2><div class="fgrid">'+fld('ce-nick','Nickname','text',u.nick,'')+'</div><p class="note">Address is stored on the latest order.</p><div class="actions"><button class="btn" data-act="cesave" data-idx="'+i+'">Save</button></div>';
+  $('#sheet').hidden=false;
+};
+A.cesave=function(t){
+  var i=+t.dataset.idx,u=S.users[i];if(!u)return;
+  u.nick=$('#ce-nick').value.trim()||u.nick;save();closeSheet();toast('Customer updated');render();
+};
+A.custreset=function(t){
+  var i=+t.dataset.idx,u=S.users[i];if(!u)return;
+  if(!confirm('Reset password to 123456?'))return;
+  u.h=hsh('123456');save();toast('Password reset');
+};
+
+A.forgotpw=function(){
+  $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">×</button><h2>Reset password</h2><p class="note">Enter your registered number. If it exists, your password resets to 123456.</p><div class="fgrid">'+fld('fp-phone','Mobile number','tel','','inputmode="tel"')+'</div><div class="actions"><button class="btn gold" data-act="fpsub">Reset password</button></div>';
+  $('#sheet').hidden=false;
+};
+A.fpsub=function(){
+  var ph=cnPhone($('#fp-phone').value);
+  if(!ph){toast('Enter a valid number');return;}
+  var u=S.users.filter(function(x){return x.phone===ph;})[0];
+  if(u){u.h=hsh('123456');save();toast('Password reset to 123456');}else{toast('No account with that number');}
+  closeSheet();
+};
+
+var lv0=V.login;V.login=function(){
+  var h=lv0();
+  if(authMode==='reg'){
+    h=h.replace('</div><p class="err" id="au-err">', '</div><div class="pw-meters"><div class="pw-bar"><i id="pw-fill"></i></div><ul class="pw-rules"><li data-rule="len">6+ chars</li><li data-rule="cap">1 capital</li><li data-rule="num">2+ numbers</li><li data-rule="spec">1 special</li></ul></div><p class="err" id="au-err">');
+  } else {
+    h=h.replace('<button class="btn block" type="submit">Log in</button>', '<button type="button" class="rm" data-act="forgotpw" style="margin-top:8px">Forgot password?</button><button class="btn block" type="submit">Log in</button>');
+  }
+  return h;
+};
+document.addEventListener('input',function(e){
+  if(e.target.id==='au-pw'&&authMode==='reg'){
+    var pw=e.target.value;
+    var rules={len:pw.length>=6,cap:/[A-Z]/.test(pw),num:(pw.match(/\d/g)||[]).length>=2,spec:/[^A-Za-z0-9]/.test(pw)};
+    $$('.pw-rules li[data-rule]').forEach(function(li){li.classList.toggle('ok',rules[li.dataset.rule]);});
+    var f=$('#pw-fill');if(f){var c=Object.keys(rules).filter(function(k){return rules[k];}).length;f.style.width=(c/4*100)+'%';}
+  }
+});
+
+/* round 6 sidebar filters */
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='pr-min'){prMin=Math.max(0,parseFloat(t.value)||0);renderGrid();return;}
+  if(t.id==='pr-max'){prMax=Math.max(0,parseFloat(t.value)||0);renderGrid();return;}
+  if(t.id==='pr-go'){prMax=Math.max(0,parseFloat(t.value)||0);$('#pr-val').textContent='¥'+money(prMax);renderGrid();return;}
+  if(t.id==='pr-val'){/* read-only mirror */}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.id==='pr-min'){prMin=Math.max(0,parseFloat(t.value)||0);renderGrid();return;}
+  if(t.id==='pr-max'){prMax=Math.max(0,parseFloat(t.value)||0);renderGrid();return;}
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act="brandf"]');if(b){fBrand=fBrand===b.dataset.id?'':b.dataset.id;renderGrid();return;}
+});
+/* round 6: featured "Most Picked" badge */
+var _card0=card;
+card=function(p){
+  var h=_card0(p);
+  if(p.feat)h=h.replace('<span class="tagb">','<span class="feat-badge">Most Picked</span><span class="tagb">');
+  return h;
+};
+
 var h0=location.hash.replace('#','');
 if(h0&&V[h0]&&h0!=='done'&&h0!=='checkout')view=h0;
 render();
 })();
+document.addEventListener('input',function(e){if(e.target.id==='qtop'){fQ=e.target.value;if(view==='shop')renderGrid();else{view='shop';render();}}});
 </script>
 
 </body></html>
