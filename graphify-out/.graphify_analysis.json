@@ -1,0 +1,94 @@
+{
+  "communities": {
+    "0": [
+      "package",
+      "package_author",
+      "package_description",
+      "package_keywords",
+      "package_license",
+      "package_main",
+      "package_name",
+      "package_type",
+      "package_version"
+    ],
+    "1": [
+      "ref_path",
+      "test_playwright",
+      "test_playwright_chromium",
+      "test_playwright_path",
+      "test_playwright_seed"
+    ],
+    "2": [
+      "package_dependencies",
+      "package_dependencies_playwright",
+      "ref_playwright"
+    ],
+    "3": [
+      "package_scripts",
+      "package_scripts_test"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2222222222222222,
+    "1": 0.4,
+    "2": 0.6666666666666666,
+    "3": 1.0
+  },
+  "gods": [
+    {
+      "id": "ref_playwright",
+      "label": "playwright",
+      "degree": 3
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_playwright",
+      "label": "playwright@^1.64.1",
+      "degree": 2
+    },
+    {
+      "id": "package_main",
+      "label": "main",
+      "degree": 1
+    },
+    {
+      "id": "package_scripts_test",
+      "label": "test",
+      "degree": 1
+    },
+    {
+      "id": "package_keywords",
+      "label": "keywords",
+      "degree": 1
+    },
+    {
+      "id": "package_author",
+      "label": "author",
+      "degree": 1
+    },
+    {
+      "id": "package_license",
+      "label": "license",
+      "degree": 1
+    },
+    {
+      "id": "test_playwright_chromium",
+      "label": "{ chromium }",
+      "degree": 1
+    },
+    {
+      "id": "test_playwright_path",
+      "label": "path",
+      "degree": 1
+    }
+  ],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

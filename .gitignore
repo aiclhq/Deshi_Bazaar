@@ -1,1 +1,5 @@
 node_modules/
+
+# Spec-Kit & Agent Tools
+.omp/
+.specify/
