@@ -153,10 +153,7 @@ img,svg{max-width:100%}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:width .2s,background .2s}
 .dots i.on{width:22px;border-radius:5px;background:var(--green)}
 
-.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.cat{--c1:#ccc;--c2:#999;--ink:#111;border:0;border-radius:18px;padding:14px 14px 12px;text-align:left;cursor:pointer;background:linear-gradient(150deg,var(--c1),var(--c2));color:var(--ink);min-height:92px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
-.cat b{font-family:var(--f-disp);font-size:1.45rem;font-weight:800;line-height:1.05}
-.cat span{font-size:.82rem;font-weight:600;opacity:.9}
+
 
 .row-scroll{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity}
 .row-scroll .card{flex:0 0 164px;scroll-snap-align:start}
@@ -173,11 +170,11 @@ img,svg{max-width:100%}
 .off::after{content:"";position:absolute;left:0;right:0;bottom:-5px;background:var(--red);height:5px;clip-path:polygon(0 0,14% 0,20% 100%,28% 0,34% 100%,40% 0,48% 100%,54% 0,60% 100%,66% 0,74% 100%,80% 0,88% 100%,94% 0,100% 0,100% 100%,0 100%)}
 .off.pre-badge{top:34px}
 /* card body — clear contrast + spacing so text never overlaps the image */
-.c-body{padding:10px 12px 14px;display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.c-body{padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
 .c-cat{font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.c-body h3{font-size:.96rem;font-weight:800;line-height:1.25;cursor:pointer;overflow-wrap:anywhere;word-break:break-word;color:var(--fg);margin:2px 0}
-.bn{font-size:.82rem;color:var(--muted);line-height:1.3;overflow-wrap:anywhere;word-break:break-word}
-.szl{font-size:.76rem;color:var(--muted);line-height:1.3}
+.c-body h3{font-size:.96rem;font-weight:800;line-height:1.3;cursor:pointer;overflow-wrap:anywhere;word-break:break-word;color:var(--fg);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bn{font-size:.88rem;color:var(--fg);margin:0;line-height:1.4;font-weight:600;overflow-wrap:anywhere;word-break:break-word}
+.szl{font-size:.8rem;color:var(--muted);margin:0;line-height:1.3}
 .stp{--sc:var(--sc-deliv);display:inline-block;width:fit-content;font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:999px;color:var(--sc);background:color-mix(in srgb,var(--sc) 16%,var(--surface));margin-top:4px;line-height:1.4}
 .stp.out{--sc:var(--sc-cancel)}.stp.pre{--sc:var(--sc-conf)}
 .c-foot{margin-top:auto;padding-top:10px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
@@ -365,7 +362,7 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sheet .box{animation:none}.toast,.dots i{transition:none}.cartpill.bump{animation:none}}
 
 /* ===== upgrade ===== */
-.card,.cat,.btn{transition:transform .15s,box-shadow .15s}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.cat:hover{transform:scale(1.03)}.btn:active{transform:scale(.97)}
+.card,.btn{transition:transform .15s,box-shadow .15s}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.btn:active{transform:scale(.97)}
 .s4{background:linear-gradient(120deg,#7b3fb8,#c9202f);color:#fff}.s5{background:linear-gradient(120deg,#1b2a4a,#4a3d8f);color:#fff}.s4 .btn,.s5 .btn{background:#fff;color:#222}
 .pack.ph{aspect-ratio:1;background:#fff;border-radius:12px;overflow:hidden}.pack.ph:not(.mini):not(.big){width:min(88%,200px)}.pack.ph img{width:100%;height:100%;object-fit:cover;display:block}.pack.ph.big{width:130px}.line .art .pack.ph{width:56px}.sheet .pv .pack.ph{width:200px}
 .pill.Paid{--sc:var(--sc-conf)}.pill.ShippedSF{--sc:var(--sc-ship)}.pill.ShippedStd{--sc:var(--sc-pack)}.pill.Received{--sc:var(--sc-deliv)}
@@ -792,8 +789,14 @@ V.home=function(){
     '<div class="slide s2"><div><h3>Standard · 3–5 days</h3><p>'+money(s.slowRate)+' per kg. Slower and cheaper for bigger orders.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
     '<div class="slide s3"><div><h3>Featured and hot sell</h3><p>The products our customers order most.</p></div><button class="btn sm" data-act="catf" data-id="hot">See them</button></div>'+
     '</div><div class="dots" id="dots"><i class="on"></i><i></i><i></i></div></div>'+
-  '<div class="wrap"><section class="sec"><div class="sec-h"><h2>Shop by category</h2></div><div class="cats">'+
-    CATS.map(function(c){return '<button class="cat" style="--c1:'+c.c1+';--c2:'+c.c2+';--ink:'+c.ink+'" data-act="catf" data-id="'+c.id+'"><b>'+esc(c.bn)+'</b><span>'+esc(c.name)+' · '+(counts[c.id]||0)+'</span></button>';}).join('')+'</div></section>'+
+  '<div class="wrap shopwrap"><button class="sbtog" data-act="sbtog" aria-label="Toggle categories" aria-expanded="true">\u2630 Categories</button>'+
+    '<aside class="sbside"><div class="panel">'+
+    '<button class="sbgrp" data-act="sbgrp" data-g="homecat" aria-expanded="true" style="width:100%;text-align:left;background:none;border:0;color:var(--fg);font:700 .85rem var(--f-body);display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:0 0 8px"><span>Shop by category</span><i data-g="homecat" class="sbarr">\u25be</i></button>'+
+    '<div class="sbcon" data-g="open" data-group="homecat"><div class="fgroup">'+CATS.map(function(c){return '<label style="display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer"><input type="checkbox" data-act="catf" data-id="'+c.id+'"><span style="width:10px;height:10px;border-radius:50%;background:'+c.c2+';flex:none"></span><span style="flex:1">'+esc(c.name)+'</span><span style="color:var(--muted);font-size:.8rem">'+(counts[c.id]||0)+'</span></label>';}).join('')+'</div></div>'+
+    '</aside>'+
+    '<div class="shopbar"><div class="search"><input id="q" type="search" placeholder="Search masala, rice, tea, chanachur\u2026" value="'+esc(fQ)+'" aria-label="Search products" autocomplete="off"></div>'+
+    '<div class="chips">'+[{id:'all',name:'All',col:'var(--green)'},{id:'hot',name:'Hot Sell',col:'var(--gold)'},{id:'in',name:'In stock',col:'var(--sc-deliv)'},{id:'pre',name:'Pre-order',col:'var(--sc-conf)'},{id:'out',name:'Out of stock',col:'var(--sc-cancel)'}].concat(S.products.some(function(p){return p.old>p.price;})?[{id:'offers',name:'Offers',col:'var(--red)'}]:[]).map(function(c){return '<button class="chip'+(fCat===c.id?' on':'')+'" data-act="catf" data-id="'+c.id+'"><i style="background:'+c.col+'"></i>'+esc(c.name)+'</button>';}).join('')+'</div>'+
+  '</div>'+
   '<section class="sec"><div class="sec-h"><h2>Featured · Hot sell</h2><button class="link" data-act="catf" data-id="hot">View all</button></div><div class="row-scroll">'+feat.map(card).join('')+'</div></section>'+
   (offers.length?'<section class="sec"><div class="sec-h"><h2>Special offers</h2><button class="link" data-act="catf" data-id="offers">View all</button></div><div class="row-scroll">'+offers.map(card).join('')+'</div></section>':'')+
   '<section class="sec"><div class="sec-h"><h2>How ordering works</h2></div><div class="steps">'+
@@ -2067,7 +2070,12 @@ Object.assign(A,{
       '<div style="flex:1;min-width:0">'+(v?'<span class="vip-badge '+t.name.toLowerCase()+'">'+m.icon+' '+esc(t.name)+' customer</span>':'<b>'+esc(u?u.nick:'Guest')+'</b><p class="note" style="margin:2px 0">'+(t.name!=='None'?'Not verified yet \u2014 ask the shop.':'No tier yet \u2014 keep shopping!')+'</p>')+'</div></div>'+
       '<div class="bar" style="margin:8px 0"><i style="width:'+Math.round((v&&t.name!=='None'?m.progress:0)*100)+'%"></i></div>'+
       '<p class="note">\u00a5'+num(t.spend)+' spent in the last 180 days'+(m.next&&v?' \u00b7 \u00a5'+num(Math.max(0,m.next-t.spend))+' to go':'')+'</p>'+
-      '<div class="actions"><button class="btn" data-act="go" data-v="me">My account</button><button class="btn ghost" data-act="close">Close</button></div>';
+      '<div class="actions" style="display:flex;flex-direction:column;gap:6px">'+
+        '<div class="actions"><button class="btn" data-act="go" data-v="me">My account</button><button class="btn ghost" data-act="close">Close</button></div>'+
+        (u?'<button class="btn ghost" style="color:var(--red);border-color:var(--red)" data-act="logout">Log out</button>':'')+
+        (adminOK?'<button class="btn" style="--btn:var(--gold)" data-act="go" data-v="admin">Admin Panel</button>':'')+
+        (u&&adminOK?'<button class="btn ghost" style="color:var(--red);border-color:var(--red)" data-act="adminlogout">Admin Logout</button>':'')+
+      '</div>';
     $('#sheet').hidden=false;
   },
   sbtog:function(t){
