@@ -573,7 +573,7 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
 @media(min-width:760px){.card{background:#fff;border-color:#e6e6e6;box-shadow:0 1px 3px rgba(0,0,0,.06)}.c-art{background:#fafafa}}
 .topsearch{display:none;flex:1;max-width:420px;margin:0 6px}.topsearch input{width:100%;height:38px;border:0;border-radius:999px;padding:0 18px;font:500 .9rem var(--f-body);background:rgba(255,255,255,.16);color:#fff;outline:none}.topsearch input::placeholder{color:rgba(255,255,255,.75)}.topsearch input:focus{background:#fff;color:#123}
 @media(min-width:900px){.topsearch{display:flex}}
-.shopwrap{display:block}.sbside{display:none}.sbside .panel{position:sticky;top:78px}.sbside .fgroup{margin-bottom:16px}.sbside .fgroup h4{margin:0 0 8px;font:700 .8rem var(--f-body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.sbside label{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.9rem;cursor:pointer}.sbside input[type=range]{width:100%}.sbside .pmin{font-weight:700;color:var(--green)}.sbside .brandrow{display:flex;flex-wrap:wrap;gap:4px}.sbside .brandrow .chip{font-size:.75rem;padding:4px 10px}.sbside .brandrow .chip.on{background:var(--green);color:#fff}
+.shopwrap{display:block}.shopmain{min-width:0}.sbside{display:none}.sbside .panel{position:sticky;top:78px}.sbside .fgroup{margin-bottom:16px}.sbside .fgroup h4{margin:0 0 8px;font:700 .8rem var(--f-body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.sbside label{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.9rem;cursor:pointer}.sbside input[type=range]{width:100%}.sbside .pmin{font-weight:700;color:var(--green)}.sbside .brandrow{display:flex;flex-wrap:wrap;gap:4px}.sbside .brandrow .chip{font-size:.75rem;padding:4px 10px}.sbside .brandrow .chip.on{background:var(--green);color:#fff}
 .sbtog{display:none;margin-bottom:12px;font:700 .9rem var(--f-body);background:var(--green);color:var(--btn-fg);border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
 .sbtog[aria-expanded="true"]{background:var(--gold);color:#2a1f0a}
 .sbgrp{margin-bottom:4px}
@@ -581,7 +581,7 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
 .sbcon[data-g="open"]{display:block;max-height:600px;opacity:1}
 .sbarr{display:inline-block;transition:transform .25s ease;font-size:.7rem;line-height:1;vertical-align:middle}
 .sbgrp[aria-expanded="true"] .sbarr{transform:rotate(180deg)}
-@media(min-width:1000px){.shopwrap{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}.sbside{display:block}.sbtog{display:none}.sbcon{display:block;max-height:none;opacity:1}}
+@media(min-width:1000px){.shopwrap{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:start}.sbside{display:block}.sbtog{display:none}.sbcon{display:block;max-height:none;opacity:1}.shopmain{grid-column:2;min-width:0}}
 @media(max-width:999px){.shopwrap{display:block}.sbtog{display:block}.sbside{display:block;position:fixed;left:0;top:0;bottom:0;width:280px;max-width:80vw;background:var(--bg);z-index:900;box-shadow:0 0 0 100vmax rgba(0,0,0,.45);transform:translateX(-100%);transition:transform .25s ease;overflow-y:auto;padding:16px}.sbside[data-g="open"]{transform:translateX(0)}.sbside .panel{position:static}.shopbar{margin-bottom:12px}.chips{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}}
 .pw-meters{margin:8px 0 4px}.pw-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.pw-bar i{display:block;height:100%;width:0;background:#c0392b;transition:width .2s,background .2s}.pw-bar i[data-lv="1"]{background:#e67e22}.pw-bar i[data-lv="2"]{background:#f1c40f}.pw-bar i[data-lv="3"]{background:#27ae60}.pw-bar i[data-lv="4"]{background:#157347}.pw-rules{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;margin:8px 0 0;padding:0}.pw-rules li{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:4px}.pw-rules li::before{content:"○";font-size:.7rem}.pw-rules li.ok{color:var(--green);font-weight:600}.pw-rules li.ok::before{content:"●"}
 .qr-note{font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px;line-height:1.45}
@@ -833,11 +833,12 @@ V.home=function(){
     '<div class="slide s2"><div><h3>Standard · 3-4 days</h3><p>'+money(s.slowRate)+' per kg. 3-4 days all over China.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
     '<div class="slide s3"><div><h3>Featured and hot sell</h3><p>The products our customers order most.</p></div><button class="btn sm" data-act="catf" data-id="hot">See them</button></div>'+
     '</div><div class="dots" id="dots"><i class="on"></i><i></i><i></i></div></div>'+
-  '<div class="wrap shopwrap"><button class="sbtog" data-act="sbtog" aria-label="Toggle categories" aria-expanded="true">\u2630 Categories</button>'+
+  '<div class="wrap shopwrap">'+
     '<aside class="sbside"><div class="panel">'+
     '<button class="sbgrp" data-act="sbgrp" data-g="homecat" aria-expanded="true" style="width:100%;text-align:left;background:none;border:0;color:var(--fg);font:700 .85rem var(--f-body);display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:0 0 8px"><span>Shop by category</span><i data-g="homecat" class="sbarr">\u25be</i></button>'+
     '<div class="sbcon" data-g="open" data-group="homecat"><div class="fgroup">'+CATS.map(function(c){return '<label style="display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer"><input type="checkbox" data-act="catf" data-id="'+c.id+'"><span style="width:10px;height:10px;border-radius:50%;background:'+c.c2+';flex:none"></span><span style="flex:1">'+esc(c.name)+'</span><span style="color:var(--muted);font-size:.8rem">'+(counts[c.id]||0)+'</span></label>';}).join('')+'</div></div>'+
     '</aside>'+
+    '<div class="shopmain">'+
     '<div class="shopbar"><div class="search"><input id="q" type="search" placeholder="Search masala, rice, tea, chanachur\u2026" value="'+esc(fQ)+'" aria-label="Search products" autocomplete="off"></div>'+
     '<div class="chips">'+[{id:'all',name:'All',col:'var(--green)'},{id:'hot',name:'Hot Sell',col:'var(--gold)'},{id:'in',name:'In stock',col:'var(--sc-deliv)'},{id:'pre',name:'Pre-order',col:'var(--sc-conf)'},{id:'out',name:'Out of stock',col:'var(--sc-cancel)'}].concat(S.products.some(function(p){return p.old>p.price;})?[{id:'offers',name:'Offers',col:'var(--red)'}]:[]).map(function(c){return '<button class="chip'+(fCat===c.id?' on':'')+'" data-act="catf" data-id="'+c.id+'"><i style="background:'+c.col+'"></i>'+esc(c.name)+'</button>';}).join('')+'</div>'+
   '</div>'+
@@ -849,7 +850,9 @@ V.home=function(){
     '<div><span><b>Send your order</b>Checkout makes a ready message. Send it to us on WhatsApp or WeChat.</span></div>'+
     '<div><span><b>Pay and receive</b>We confirm stock and your total, share a payment code, then ship by courier.</span></div></div></section>'+
   '<section class="sec"><div class="info"><div><b>Delivery charge</b><p>Included in your order total and based on order size. '+esc(deliveryLine())+'</p></div><div><b>Stock labels</b><p>Every product shows In stock, Out of stock or Pre-order. Hot Sell marks featured products.</p></div><div><b>Prices</b><p>Prices can change at any time. We confirm your final total when we confirm your order.</p></div></div></section>'+
-  '<section class="sec"><div class="about"><h2>About Deshi Bazaar</h2><p>Deshi Bazaar — Taste of Bangladesh brings your plate. We have been running since 2024 and bring Bangladeshi groceries to customers in Nanjing and across Mainland China. Address: Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China. Hotline: +8618551702750.</p><div class="actions"><button class="btn sm ghost" data-act="go" data-v="terms">Terms &amp; Conditions</button></div></div></section></div>'+
+  '<section class="sec"><div class="about"><h2>About Deshi Bazaar</h2><p>Deshi Bazaar — Taste of Bangladesh brings your plate. We have been running since 2024 and bring Bangladeshi groceries to customers in Nanjing and across Mainland China. Address: Pukuo District, Nanjing City, Jiangsu Province - 210044, P.R. China. Hotline: +8618551702750.</p><div class="actions"><button class="btn sm ghost" data-act="go" data-v="terms">Terms &amp; Conditions</button></div></div></section>'+
+    '</div>'+
+    '</div>'+
   foot();
 };
 function foot(){var s=S.settings;
