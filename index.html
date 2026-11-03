@@ -314,6 +314,34 @@ details.ord ul{margin:0;padding-left:18px}
 .toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#14261b;color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:.92rem;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
+/* Zero-Trust admin gate — dark terminal "System Access" UI */
+.sys-access{position:fixed;inset:0;background:#0a0f0a;display:grid;place-items:center;z-index:9999;font-family:monospace}
+.sys-card{background:#111914;border:1px solid #1f3d2a;border-radius:12px;padding:40px 32px;max-width:380px;width:90%;text-align:center;box-shadow:0 0 40px rgba(0,0,0,.6)}
+.sys-title{color:#00ff88;font-size:1.5rem;font-weight:700;letter-spacing:.15em;margin:0 0 8px;text-shadow:0 0 12px rgba(0,255,136,.4)}
+.sys-sub{color:#6b8f76;font-size:.85rem;margin:0 0 20px;letter-spacing:.05em}
+.sys-pin{width:100%;padding:14px;font-size:1.1rem;letter-spacing:.3em;text-align:center;background:#0a0f0a;color:#00ff88;border:1px solid #1f3d2a;border-radius:8px;font-family:monospace;margin-bottom:8px}
+.sys-pin:focus{outline:none;border-color:#00ff88;box-shadow:0 0 12px rgba(0,255,136,.25)}
+.sys-err{color:#ff4444;font-size:.8rem;margin:8px 0 0;min-height:1em}
+
+/* WEEKDAY DEALS section */
+.wd-section{background:linear-gradient(135deg,#f5f0e8,#ede4d4);margin:16px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.wd-inner{max-width:1100px;margin:0 auto;padding:0 16px}
+.wd-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.wd-head h2{font-size:1.6rem;font-weight:900;color:var(--red);letter-spacing:.04em;margin:0;text-transform:uppercase}
+.wd-cd{display:flex;gap:8px}
+.wd-cu{display:flex;flex-direction:column;align-items:center;gap:2px}
+.wd-cv{font-size:1.4rem;font-weight:900;color:var(--red);background:var(--red);color:#fff;padding:4px 10px;border-radius:6px;min-width:44px;text-align:center;line-height:1.2}
+.wd-cl{font-size:.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.wd-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;-ms-overflow-style:none;scrollbar-width:none}
+.wd-pills::-webkit-scrollbar{display:none}
+.wd-pill{flex:none;background:#e8e0d4;color:var(--muted);border:1px solid #d4c9b8;border-radius:999px;padding:7px 16px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:.15s}
+.wd-pill.active{background:var(--gold);color:#000;border-color:var(--gold)}
+.wd-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
+.wd-scroll::-webkit-scrollbar{display:none}
+.wd-scroll .card{flex:none;width:280px}
+/* Shwapno card tweaks */
+.dlv{display:block;font-size:.74rem;font-style:italic;color:var(--red);font-weight:700;margin:0 0 6px;text-align:center}
+.perp{font-size:.72rem;color:var(--muted);font-weight:600;margin-left:4px}
 /* admin */
 .atabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px}
 .stats{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
@@ -576,7 +604,7 @@ textarea.bk{width:100%;min-height:120px;border-radius:14px;border:1.5px solid va
     </nav>
     <span class="spacer"></span>
     <div class="topsearch"><input id="qtop" type="search" placeholder="Search masala, rice, tea…" aria-label="Search products" autocomplete="off"></div>
-    <button class="ib" id="giftIco" data-act="offers" aria-label="Offers">\ud83c\udf81</button>
+    <button class="ib" id="giftIco" data-act="offers" aria-label="Offers">🎁</button>
      <button class="ib" id="themeIco" data-act="theme" aria-label="Toggle dark mode" title="Toggle dark mode">\ud83c\udf8f</button>
      <button class="ib" id="acctIco" data-act="acctmenu" aria-label="VIP account"><span class="tier-ring" id="trRing"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tr-bg" cx="22" cy="22" r="18"></circle><circle class="tr-fg" id="trFg" cx="22" cy="22" r="18"></circle></svg><span class="tr-ico" id="trIco">\ud83d\udc64</span></span></button>
      <button class="cartpill" id="pill" data-act="go" data-v="cart" aria-label="Open cart">
@@ -674,7 +702,7 @@ var RAW=[
 var PRODUCTS=RAW.map(function(r){return {id:r[0],b:r[1],n:r[2],bn:r[3],cat:r[4],size:r[5],price:r[6],old:0,w:r[7],st:r[8],feat:!!r[9],tag:'',desc:''};});
 
 var DEF_SETTINGS={whatsapp:SHOP.whatsapp,wechat:SHOP.wechat,email:SHOP.email,fastRate:12,slowRate:10,step:1,pin:'1234',coupons:[]};
-var SP={fast:{name:'SF Express',tag:'Fastest',days:'1–3 days'},slow:{name:'Standard delivery',tag:'Economy',days:'3–5 days'}};
+var SP={fast:{name:'SF Express',tag:'Fastest',days:'3-4 days'},slow:{name:'Standard delivery',tag:'Economy',days:'3-4 days'}};
 var PROVINCES=[['Anhui','安徽省'],['Beijing','北京市'],['Chongqing','重庆市'],['Fujian','福建省'],['Gansu','甘肃省'],['Guangdong','广东省'],['Guangxi','广西壮族自治区'],['Guizhou','贵州省'],['Hainan','海南省'],['Hebei','河北省'],['Heilongjiang','黑龙江省'],['Henan','河南省'],['Hubei','湖北省'],['Hunan','湖南省'],['Inner Mongolia','内蒙古自治区'],['Jiangsu','江苏省'],['Jiangxi','江西省'],['Jilin','吉林省'],['Liaoning','辽宁省'],['Ningxia','宁夏回族自治区'],['Qinghai','青海省'],['Shaanxi','陕西省'],['Shandong','山东省'],['Shanghai','上海市'],['Shanxi','山西省'],['Sichuan','四川省'],['Tianjin','天津市'],['Tibet','西藏自治区'],['Xinjiang','新疆维吾尔自治区'],['Yunnan','云南省'],['Zhejiang','浙江省']];
 function provOpts(sel){return PROVINCES.map(function(r){return '<option value="'+r[1]+'"'+(sel===r[1]?' selected':'')+'>'+r[0]+' · '+r[1]+'</option>';}).join('');}
 var STATUSES=['Placed','Confirmed','Packed','Shipped','Delivered','Cancelled'];
@@ -712,7 +740,7 @@ var S=(function(){
   return d;
 })();
 
-var view='home',adminTab='overview',fCat='all',fBrand='',fQ='',fSort='feat',adminOK=false,lastOrder=null,carTimer=null,wkVal=1,prMin=0,prMax=99999;
+var view='home',adminTab='overview',fCat='all',fBrand='',fQ='',fSort='feat',adminOK=false,lastOrder=null,carTimer=null,wkVal=1,prMin=0,prMax=99999,adminAttempts=0,adminLockT=0,adminLockMs=30000;
 var B={cc:{lines:[],speed:'fast',disc:0},qb:{lines:[],speed:'fast',disc:0,name:'',phone:'',region:'',addr:'',courier:'',track:''}};
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -753,13 +781,29 @@ function slot(p){
 }
 function card(p){
   var rmbOff=p.old>p.price?Math.round((p.old-p.price)*100)/100:0;
-  var tag=p.feat?'Hot Sell':p.tag;
+  var tag=p.feat?'Most Picked':p.tag;
   return '<article class="card'+(p.st==='out'?' out':'')+'">'+
-   '<button class="c-art" data-act="open" data-id="'+p.id+'" aria-label="View '+esc(title(p))+'">'+art(p)+(rmbOff>0?'<span class="off">'+rmbOff+' RMB OFF</span>':'')+(tag?'<span class="tagb">'+esc(tag)+'</span>':'')+'</button>'+
-   '<div class="c-body"><span class="c-cat">'+esc(catOf(p.cat).name)+'</span><h3 data-act="open" data-id="'+p.id+'">'+esc(title(p))+'</h3><p class="bn">'+esc(p.bn)+'</p><p class="szl">'+esc(p.size)+'</p>'+stp(p)+
-   '<div class="c-foot"><div class="pr">'+(p.old>p.price?'<s>'+money(p.old)+'</s>':'')+'<b>'+money(p.price)+'</b></div><div data-slot="'+p.id+'">'+slot(p)+'</div></div></div></article>';
+   '<button class="c-art" data-act="open" data-id="'+p.id+'" aria-label="View '+esc(title(p))+'">'+art(p)+(rmbOff>0?'<span class="off">¥'+rmbOff+' OFF</span>':'')+(tag?'<span class="tagb">'+esc(tag)+'</span>':'')+'</button>'+
+   '<div class="c-body"><span class="dlv">*Delivery 3-4 days all over China*</span><h3 data-act="open" data-id="'+p.id+'">'+esc(title(p))+'</h3><p class="szl">'+esc(p.size)+'</p>'+
+   '<div class="c-foot"><div class="pr">'+(p.old>p.price?'<s>'+money(p.old)+'</s>':'')+'<b>'+money(p.price)+'</b><span class="perp">Per Piece</span></div><div data-slot="'+p.id+'">'+slot(p)+'</div></div></div></article>';
 }
 function priceNote(){return '<div class="warn">Prices can change at any time. We confirm your final total when we confirm your order.</div>';}
+/* WEEKDAY DEALS countdown timer */
+var wdTimer=null;
+function wdTick(){
+  var el=$('#wd-cd');if(!el){clearInterval(wdTimer);return;}
+  var now=new Date();
+  var nextFri=new Date(now);nextFri.setDate(now.getDate()+(5-now.getDay()+7)%7);
+  if(nextFri<=now)nextFri.setDate(nextFri.getDate()+7);
+  var d=nextFri-now;
+  if(d<0)d=0;
+  var days=Math.floor(d/86400000),hrs=Math.floor((d%86400000)/3600000),min=Math.floor((d%3600000)/60000),sec=Math.floor((d%60000)/1000);
+  var f2=function(n){return String(n).padStart(2,'0');};
+  var units=['Days','Hours','Minutes','Seconds'],vals=[f2(days),f2(hrs),f2(min),f2(sec)];
+  var html='';
+  for(var i=0;i<4;i++)html+='<div class="wd-cu"><div class="wd-cv">'+vals[i]+'</div><div class="wd-cl">'+units[i]+'</div></div>';
+  el.innerHTML=html;
+}
 
 /* delivery speed cards. radio=true makes them selectable */
 function speedCards(name,sel,w,radio){
@@ -771,7 +815,7 @@ function speedCards(name,sel,w,radio){
 
 /* ---------- views ---------- */
 var V={};
-function deliveryLine(){var s=S.settings;return 'SF Express (fastest, 1–3 days) '+money(s.fastRate)+' per kg. Standard delivery (3–5 days) '+money(s.slowRate)+' per kg. Same rates for Nanjing and every other city in Mainland China.';}
+function deliveryLine(){var s=S.settings;return 'SF Express (fastest) '+money(s.fastRate)+' per kg. Standard delivery '+money(s.slowRate)+' per kg. Same rates for all over China.';}
 
 V.home=function(){
   var s=S.settings,feat=S.products.filter(function(p){return p.feat&&p.st!=='out';}).slice(0,12);
@@ -782,11 +826,11 @@ V.home=function(){
     '<h1>Taste of Bangladesh <span>brings your plate</span></h1>'+
     '<p>Bangladeshi groceries delivered to Nanjing and to every city across Mainland China. Order here, confirm on WeChat or WhatsApp, and we ship by courier.</p>'+
     '<div class="cta"><button class="btn gold" data-act="go" data-v="shop">Shop now</button><button class="btn ghost" data-act="go" data-v="calc">Delivery calculator</button></div>'+
-    '<div class="trust"><span>SF Express 1–3 days</span><span>Standard 3–5 days</span><span>Since 2024</span></div></div>'+
+    '<div class="trust"><span>SF Express · 3-4 days</span><span>Standard · 3-4 days</span><span>Since 2024</span></div></div>'+
     '<div class="hero-art" aria-hidden="true">'+heroP.map(function(p){return art(p,'big');}).join('')+'</div></div></section>'+
   '<div class="wrap car-wrap"><div class="car" id="car">'+
-    '<div class="slide s1"><div><h3>SF Express · 1–3 days</h3><p>'+money(s.fastRate)+' per kg to any city in Mainland China, Nanjing included.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
-    '<div class="slide s2"><div><h3>Standard · 3–5 days</h3><p>'+money(s.slowRate)+' per kg. Slower and cheaper for bigger orders.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
+    '<div class="slide s1"><div><h3>SF Express · 3-4 days</h3><p>'+money(s.fastRate)+' per kg. 3-4 days all over China.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
+    '<div class="slide s2"><div><h3>Standard · 3-4 days</h3><p>'+money(s.slowRate)+' per kg. 3-4 days all over China.</p></div><button class="btn sm" data-act="go" data-v="calc">Calculate</button></div>'+
     '<div class="slide s3"><div><h3>Featured and hot sell</h3><p>The products our customers order most.</p></div><button class="btn sm" data-act="catf" data-id="hot">See them</button></div>'+
     '</div><div class="dots" id="dots"><i class="on"></i><i></i><i></i></div></div>'+
   '<div class="wrap shopwrap"><button class="sbtog" data-act="sbtog" aria-label="Toggle categories" aria-expanded="true">\u2630 Categories</button>'+
@@ -798,6 +842,7 @@ V.home=function(){
     '<div class="chips">'+[{id:'all',name:'All',col:'var(--green)'},{id:'hot',name:'Hot Sell',col:'var(--gold)'},{id:'in',name:'In stock',col:'var(--sc-deliv)'},{id:'pre',name:'Pre-order',col:'var(--sc-conf)'},{id:'out',name:'Out of stock',col:'var(--sc-cancel)'}].concat(S.products.some(function(p){return p.old>p.price;})?[{id:'offers',name:'Offers',col:'var(--red)'}]:[]).map(function(c){return '<button class="chip'+(fCat===c.id?' on':'')+'" data-act="catf" data-id="'+c.id+'"><i style="background:'+c.col+'"></i>'+esc(c.name)+'</button>';}).join('')+'</div>'+
   '</div>'+
   '<section class="sec"><div class="sec-h"><h2>Featured · Hot sell</h2><button class="link" data-act="catf" data-id="hot">View all</button></div><div class="row-scroll">'+feat.map(card).join('')+'</div></section>'+
+  '<section class="wd-section"><div class="wd-inner"><div class="wd-head"><h2>WEEKDAY DEALS</h2><div class="wd-cd" id="wd-cd"></div></div><div class="wd-pills">'+['All','Groceries','Snacks','Rice','Oils','Dairy','Frozen'].map(function(n,i){return '<button class="wd-pill'+(i===0?' active':'')+'">'+n+'</button>';}).join('')+'</div><div class="wd-scroll">'+offers.map(card).join('')+'</div></div></section>'+
   (offers.length?'<section class="sec"><div class="sec-h"><h2>Special offers</h2><button class="link" data-act="catf" data-id="offers">View all</button></div><div class="row-scroll">'+offers.map(card).join('')+'</div></section>':'')+
   '<section class="sec"><div class="sec-h"><h2>How ordering works</h2></div><div class="steps">'+
     '<div><span><b>Fill your cart</b>Pick products, choose a delivery speed and watch the total update live.</span></div>'+
@@ -880,7 +925,7 @@ V.checkout=function(){
    fld('ck-city','City and district (Nanjing or any city)','text',p.city,'autocomplete="address-level2" placeholder="Write Your City"')+
    '<label class="fld full"><span>Full address (building, room number, postcode)</span><textarea id="ck-addr" autocomplete="street-address">'+esc(p.addr)+'</textarea></label>'+
    '<label class="fld full"><span>Note for us (optional)</span><textarea id="ck-note" placeholder="Spice level, delivery time, anything we should know"></textarea></label></div>'+
-    '<h2 style="margin-top:16px">Payment</h2><div class="radios">'+PAYS.map(function(x,i){return '<label class="radio"><input type="radio" name="pay" value="'+x+'"'+((S.pay||PAYS[0])===x?' checked':'')+'><span>'+x+'</span></label>';}).join('')+'</div><div class="qr-display">'+(function(){var s=S.pay||PAYS[0];if(s==='WeChat Pay')return '<img src="img/wechat_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';if(s==='Alipay')return '<img src="img/alipay_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';return 'Bank transfer is only available for BDT orders.';})()+'</div>'+
+    '<h2 style="margin-top:16px">Payment</h2><div class="radios">'+PAYS.map(function(x,i){return '<label class="radio"><input type="radio" name="pay" value="'+x+'"'+((S.pay||PAYS[0])===x?' checked':'')+'><span>'+x+'</span></label>';}).join('')+'</div><div class="qr-display">'+(function(){var s=S.pay||PAYS[0];if(s==='WeChat Pay')return '<img src="img/wechat_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';if(s==='Alipay')return '<img src="img/alipay_qr.png" style="max-width:200px; border-radius:12px; margin-top:10px;"><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.86rem;margin-top:10px">Dear Customer, please take a Wechat/Alipay Payment Qr Code then, make the payment and then upload the payment Screenshot, after that press the Confirm Order Button</p><p class="qr-note" style="font-style:italic;color:#e6b23c;font-weight:700;font-size:.8rem;margin-top:6px">Hotline: +8618551702750</p>';return 'Bank transfer is only available for RMB orders.';})()+'</div>'+
     '<label class="fld full"><span>Upload Payment Screenshot</span><input type="file" id="payment-screenshot" accept="image/*"></label>'+
     '<label class="chk" style="margin-top:14px"><input type="checkbox" id="payment-sent"><span>I have sent the payment screenshot and order voucher to WeChat/WhatsApp +8618551702750</span></label>'+
     '<p class="note" style="margin-top:8px">You pay after we confirm your order and send a payment code.</p>'+
@@ -947,8 +992,7 @@ V.me=function(){
    '<label class="fld full"><span>Full address</span><textarea id="pf-addr">'+esc(p.addr)+'</textarea></label></div>'+
    '<div class="actions"><button class="btn" type="submit">Save details</button></div></form>'+
    '<div><div class="panel"><h2>My orders</h2>'+(mine.length?mine.map(function(o){return ordCard(o,false);}).join(''):'<p class="note">No orders yet. Your orders will appear here after checkout.</p>')+
-   '<p class="note">Order status is updated by the shop on WeChat or WhatsApp.</p></div>'+
-   '<div class="panel"><h2>Shop owner</h2><p class="note" style="margin-bottom:10px">Manage products, prices, delivery rates, quotes and margins.</p><button class="btn ghost" data-act="go" data-v="admin">Open owner panel</button></div></div></div></div>'+foot();
+   '<p class="note">Order status is updated by the shop on WeChat or WhatsApp.</p></div></div></div></div>'+foot();
 };
 
 /* ---------- calculators ---------- */
@@ -1027,7 +1071,7 @@ function termsHTML(){var s=S.settings;
    '<h3>2. Prices</h3><p>All prices are in Chinese Yuan (RMB). Product prices can change at any time. We confirm your final total when we confirm your order.</p>'+
    '<h3>3. Product labels</h3><ul><li><b>Featured / Hot Sell:</b> products our customers order most.</li><li><b>In stock:</b> available to order now.</li><li><b>Out of stock:</b> not available to order at the moment.</li><li><b>Pre-order:</b> arranged on request. We confirm the arrival time.</li></ul>'+
    '<h3>4. Delivery area and charge</h3><p>We deliver inside Nanjing City and to any other city inside Mainland China. The delivery charge is included in your order total and is based on order size (parcel weight).</p>'+
-   '<h3>5. Delivery speed and rates</h3><ul><li><b>SF Express, fastest:</b> 1–3 days, '+money(s.fastRate)+' per kg.</li><li><b>Standard delivery, slower:</b> 3–5 days, '+money(s.slowRate)+' per kg.</li><li>Parcel weight is rounded up to the next '+num(s.step||1)+' kg for billing. Delivery days are estimates.</li></ul>'+
+   '<h3>5. Delivery speed and rates</h3><ul><li><b>SF Express, fastest:</b> 3-4 days all over China, '+money(s.fastRate)+' per kg.</li><li><b>Standard delivery, slower:</b> 3-4 days all over China, '+money(s.slowRate)+' per kg.</li><li>Parcel weight is rounded up to the next '+num(s.step||1)+' kg for billing. Delivery days are estimates.</li></ul>'+
    '<h3>6. Orders and payment</h3><p>Placing an order sends us your order details. We check availability and your total, then share how to pay (WeChat Pay, Alipay or bank transfer). Your order is confirmed after we confirm it with you.</p>'+
    '<h3>7. Refund &amp; Return Policy</h3><p>We take back any item that arrives damaged, is not as described, or is the wrong product, and we will replace it or refund the item price in full. To claim a refund or return, send us a photo of the item and your order ID on WeChat or WhatsApp (+86 185 5170 2750) within 48 hours of delivery. We resolve refund claims within 3 working days by the same method you paid. Delivery charges are refunded only when the order itself is cancelled or returned in full. Customised or pre-order items are returnable only if they arrive damaged or incorrect.</p>'+
     '<h3>8. Changes</h3><p>Deshi Bazaar may update these terms, products and prices at any time.</p></div>';
@@ -1074,7 +1118,14 @@ function arow(p){
 }
 function sFld(id,label,type,val,extra){return '<label class="fld"><span>'+label+'</span><input id="'+id+'" data-s="'+id.replace('s-','')+'" type="'+type+'" value="'+esc(val)+'" '+(extra||'')+'></label>';}
 V.admin=function(){
-  if(!adminOK)return '<div class="wrap page"><h1>Owner panel</h1><form class="panel" data-form="pin" style="max-width:420px"><h2>Enter PIN</h2><div class="fgrid"><label class="fld full"><span>Owner PIN</span><input id="pin" type="password" inputmode="numeric" autocomplete="off"></label></div><p class="err" id="pin-err"></p><button class="btn block" type="submit">Unlock</button><p class="note" style="margin-top:10px">This PIN only hides the controls on this device. It is not a security lock.</p></form></div>';
+  if(!adminOK){
+    var blocked=(adminAttempts>=3&&Date.now()-adminLockT<adminLockMs);
+    if(blocked){
+      var ms=Math.ceil((adminLockMs-(Date.now()-adminLockT))/1000);
+      return '<div class="wrap page"><div class="sys-access"><div class="sys-card"><h1 class="sys-title">SYSTEM ACCESS</h1><p class="sys-err">Access locked. Try again in '+ms+'s</p></div></div></div>';
+    }
+    return '<div class="wrap page"><div class="sys-access"><div class="sys-card"><h1 class="sys-title">SYSTEM ACCESS</h1><p class="sys-sub">Enter admin PIN</p><form data-form="pin" style="margin:0"><input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="••••••" class="sys-pin"><p class="sys-err" id="pin-err"></p><button type="submit" class="btn block" style="margin-top:12px;background:var(--green);color:#000">Authenticate</button></form></div></div></div>';
+  }
   var tabs=[['overview','Overview'],['products','Products'],['orders','Orders'],['calc','Calculators'],['reports','Reports'],['settings','Settings'],['analytics','Analytics & Finance']];
   var body='',s=S.settings;
   if(adminTab==='overview'){
@@ -1117,7 +1168,7 @@ V.admin=function(){
       '<div class="actions"><button class="btn sm" data-act="exportreport">Export Report (CSV)</button><button class="btn sm ghost" data-act="printreport">Print Report</button></div>';
   }else{
     body='<div class="panel"><h2>Contact shown to customers</h2><div class="fgrid">'+sFld('s-whatsapp','WhatsApp number (digits, with country code)','tel',s.whatsapp,'inputmode="tel" placeholder="8613800000000"')+sFld('s-wechat','WeChat ID','text',s.wechat,'')+sFld('s-email','Email','email',s.email,'')+'</div></div>'+
-     '<div class="panel"><h2>Delivery rates</h2><div class="fgrid">'+sFld('s-fastRate','SF Express, 1–3 days (¥ per kg)','number',s.fastRate,'step="0.5" min="0" inputmode="decimal"')+sFld('s-slowRate','Standard, 3–5 days (¥ per kg)','number',s.slowRate,'step="0.5" min="0" inputmode="decimal"')+sFld('s-step','Billing step (kg, weight rounds up)','number',s.step,'step="0.5" min="0.1" inputmode="decimal"')+sFld('s-pin','Owner PIN','text',s.pin,'inputmode="numeric"')+'</div></div>'+
+     '<div class="panel"><h2>Delivery rates</h2><div class="fgrid">'+sFld('s-fastRate','SF Express, 3-4 days (¥ per kg)','number',s.fastRate,'step="0.5" min="0" inputmode="decimal"')+sFld('s-slowRate','Standard, 3-4 days (¥ per kg)','number',s.slowRate,'step="0.5" min="0" inputmode="decimal"')+sFld('s-step','Billing step (kg, weight rounds up)','number',s.step,'step="0.5" min="0.1" inputmode="decimal"')+sFld('s-pin','Owner PIN','text',s.pin,'inputmode="numeric"')+'</div></div>'+
      '<div class="panel"><h2>Coupons</h2>'+(s.coupons.length?s.coupons.map(function(c,i){return '<div class="crow"><span><b>'+esc(c.code)+'</b> · '+(c.type==='pct'?c.value+'% off':money(c.value)+' off')+' over '+money(c.min)+'</span><button class="btn sm ghost danger" data-act="delcoupon" data-i="'+i+'">Delete</button></div>';}).join(''):'<p class="note">No coupons. Customers only see the coupon box in the cart when a coupon exists.</p>')+
      '<div class="fgrid" style="margin-top:12px"><label class="fld"><span>Code</span><input id="cc-code" autocomplete="off"></label><label class="fld"><span>Type</span><select id="cc-type"><option value="pct">Percent off</option><option value="flat">Yuan off</option></select></label><label class="fld"><span>Value</span><input id="cc-val" type="number" step="0.5" min="0" inputmode="decimal"></label><label class="fld"><span>Minimum order (¥)</span><input id="cc-min" type="number" step="1" min="0" inputmode="decimal"></label></div><div class="actions"><button class="btn sm" data-act="addcoupon">Add coupon</button></div></div>'+
      '<div class="panel"><h2>Backup</h2><p class="note" style="margin-bottom:8px">Export your catalog and settings, or restore from a backup.</p><textarea class="bk" id="bk" aria-label="Backup data" spellcheck="false"></textarea><div class="actions"><button class="btn sm" data-act="export">Export and copy</button><button class="btn sm ghost" data-act="import">Import</button><button class="btn sm ghost danger" data-act="resetcat">Reset catalog</button></div></div>'+
@@ -1145,8 +1196,8 @@ function render(){
   var f=V[view]||V.home;
   $('#view').innerHTML=f();
   updateChrome();
-  if(view==='shop')renderGrid();
-  if(view==='home')initCarousel();
+  if(view==='shop'){renderGrid();clearInterval(wdTimer);wdTimer=setInterval(wdTick,1000);wdTick();}
+  if(view==='home'){initCarousel();clearInterval(wdTimer);wdTimer=setInterval(wdTick,1000);wdTick();}
   if(view==='calc'){wkRender();bRender('cc');}
   if(view==='admin'&&adminOK){if(adminTab==='calc'){wkRender();bRender('qb');mcRender();}if(adminTab==='overview'){updateDashboard();animateDashboard();}if(adminTab==='reports'){updateReports();animateReports();}}
 }
@@ -1309,7 +1360,7 @@ document.addEventListener('submit',function(e){
   e.preventDefault();
   var kind=f.dataset.form;
   if(kind==='coupon'){S.coupon=($('#cp').value||'').trim().toUpperCase();save();render();if(S.coupon){var T0=totals();toast(T0.cpn?'Coupon applied':'Coupon not applied');}return;}
-  if(kind==='pin'){if($('#pin').value===S.settings.pin){adminOK=true;render();}else{$('#pin-err').textContent='That PIN is not correct.';}return;}
+  if(kind==='pin'){if(adminAttempts>=3&&Date.now()-adminLockT<adminLockMs){return;}if($('#pin').value===S.settings.pin){adminOK=true;adminAttempts=0;adminLockT=0;render();}else{adminAttempts++;if(adminAttempts>=3){adminLockT=Date.now();$('#pin-err').textContent='Access locked for 30 seconds.';}else{$('#pin-err').textContent='That PIN is not correct.';}}return;}
   if(kind==='profile'){
     if(!S.profile.newuserClaimed&&!S.settings.coupons.some(function(c){return c.code.toUpperCase()==='NEWUSER10'})&&!confirm('A 10% NEWUSER coupon will be added to your account. Add it?')){S.profile.newuserClaimed=true;save();return;}
     if(!S.profile.newuserClaimed){S.settings.coupons=S.settings.coupons.filter(function(c){return c.code.toUpperCase()!=='NEWUSER10'});S.settings.coupons.push({code:'NEWUSER10',type:'pct',value:10,min:0,active:true,tag:'NEWUSER'});S.profile.newuserClaimed=true;toast('NEWUSER10 coupon added to your account');}
@@ -1328,7 +1379,7 @@ document.addEventListener('submit',function(e){
     else if(!$('#ck-terms').checked)err='Please agree to the terms and conditions.';
     else if(!psEl||!psEl.files||!psEl.files.length)err='Please upload your payment screenshot.';
     else if(!sentEl||!sentEl.checked)err='Please confirm you have sent the voucher.';
-    else if($('input[name="pay"]:checked')&&$('input[name="pay"]:checked').value==='Bank transfer')err='Bank transfer is only available for BDT orders.';
+    else if($('input[name="pay"]:checked')&&$('input[name="pay"]:checked').value==='Bank transfer')err='Bank transfer is only available for RMB orders.';
     if(err){$('#ck-err').textContent=err;return;}
     var T=totals();if(!T.lines.length){go('cart');return;}
     var d=new Date(),yy=String(d.getFullYear()).slice(2),mm=('0'+(d.getMonth()+1)).slice(-2),dd=('0'+d.getDate()).slice(-2);
@@ -1342,6 +1393,15 @@ document.addEventListener('submit',function(e){
 });
 
 window.addEventListener('hashchange',function(){var h=location.hash.replace('#','');if(h&&h!==view&&V[h]&&h!=='done'){view=h;render();window.scrollTo(0,0);}});
+/* Zero-Trust admin gate: only accessible via hidden URL hash */
+window.addEventListener('hashchange',function(){
+  var h=location.hash.replace('#','');
+  if(h==='secure-admin-gate'){
+    view='admin';
+    render();
+    window.scrollTo(0,0);
+  }
+});
 
 /* ===== upgrade module ===== */
 var R0=loadSaved()||{};
@@ -1433,7 +1493,7 @@ function memPanel(){var p=S.profile,r=spentOf(p.phone),t=tier(r.s),nx=r.s<500?50
    (nx?'<div class="bar"><i style="width:'+Math.min(100,r.s/nx*100)+'%"></i></div><p class="note">'+money(nx-r.s)+' more to the next level.</p>':'<p class="note">You are at our top level. Thank you!</p>')+
    (r.m&&r.m.coupon?'<p>Your special coupon: <b>'+esc(r.m.coupon)+'</b> <button class="rm" data-act="copy" data-t="'+esc(r.m.coupon)+'">Copy</button></p>':(t?'<p class="note">Your special coupon will be sent to you by the shop.</p>':''))+
    (dg(p.phone).length<8?'<p class="note">Save your phone number in My details to see your level.</p>':'')+'</div>';}
-var om=V.me;V.me=function(){return om().replace('<div class="panel"><h2>My orders</h2>',memPanel()+'<div class="panel"><h2>My orders</h2>').replace('<button class="btn ghost" data-act="go" data-v="admin">','<button class="btn gold" data-act="go" data-v="play">🍛 Dopamine kitchen</button> <button class="btn ghost" data-act="go" data-v="admin">');};
+var om=V.me;V.me=function(){return om().replace('<div class="panel"><h2>My orders</h2>',memPanel()+'<div class="panel"><h2>My orders</h2>');};
 
 /* home */
 var oh=V.home;
@@ -1456,7 +1516,7 @@ V.play=function(){
   var shop=S.products.filter(function(p){return p.st==='in';}).slice(0,14).map(function(p){var c=gcost(p);return '<div class="crow"><span>'+esc(title(p))+' <span class="note">'+esc(p.size)+'</span></span><button class="btn sm'+(g.coins<c?' ghost':'')+'" data-act="gbuy" data-id="'+p.id+'">\ud83e\ude99 '+c+'</button></div>';}).join('');
   return '<div class="wrap page"><h1>\ud83d\udc7b Ghost Shopping</h1><p class="lead">Visit every day for 30 days, collect ghost coins and ghost-shop your favourites. Reach day 30 and win a gift hamper built from the products you picked and clicked most.</p><div class="two even"><div class="panel"><div class="ghost">\ud83d\udc7b</div><h2 style="text-align:center">Day '+n+' of 30</h2><div class="bar"><i style="width:'+Math.min(100,n/30*100)+'%"></i></div><p class="note" style="text-align:center">Coins: <b>\ud83e\ude99 '+g.coins+'</b> \u00b7 bonus +20 every 7th day</p>'+
    '<button class="btn gold block" data-act="gcheck"'+(today?' disabled':'')+'>'+(today?'Come back tomorrow':'Collect today\u2019s 10 coins')+'</button>'+
-   '<h2 style="margin-top:16px">\ud83c\udf81 Your hamper</h2>'+(f.length?'<ul>'+f.map(function(p){return '<li>'+esc(title(p))+' '+esc(p.size)+'</li>';}).join('')+'</ul>':'<p class="note">Ghost-shop or tap products and your favourites will appear here.</p>')+
+   '<h2 style="margin-top:16px">🎁 Your hamper</h2>'+(f.length?'<ul>'+f.map(function(p){return '<li>'+esc(title(p))+' '+esc(p.size)+'</li>';}).join('')+'</ul>':'<p class="note">Ghost-shop or tap products and your favourites will appear here.</p>')+
    (n>=30?(g.claimed?'<p class="rmk">\u2713 Hamper claimed. The shop will contact you.</p>':'<button class="btn block" data-act="gclaim">Claim my gift hamper</button>'):'<p class="note">Unlocks at day 30.</p>')+'</div>'+
    '<div class="panel"><h2>Ghost shop</h2><p class="note" style="margin-bottom:8px">Spend coins to ghost-buy. Nothing is charged. Each pick shapes your hamper.</p>'+shop+'</div></div></div>'+foot();
 };
@@ -1613,12 +1673,12 @@ var wkT=null,omem=memHTML;
 memHTML=function(){return omem()+'<div class="panel"><h2>Popup notice</h2>'+sFld('s-popup','Notice shown in the Offers popup','text',S.settings.popup||'','placeholder="e.g. Shop closed 1-3 Oct"')+'</div>';};
 A.offers=function(){
   var a=activeEv(),up=EVENTS.filter(function(e){return e.e>=ymd();})[0],pp=S.settings.popup,wk=isWk();
-  $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><h2>\ud83c\udf81 Offers &amp; notices</h2>'+(pp?'<div class="rmk" style="margin-top:12px">\ud83d\udce2 '+esc(pp)+'</div>':'')+
+  $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><h2>🎁 Offers &amp; notices</h2>'+(pp?'<div class="rmk" style="margin-top:12px">\ud83d\udce2 '+esc(pp)+'</div>':'')+
    '<div class="evn" style="margin-top:10px"><b>'+(a?a.em+' '+esc(a.n):up?up.em+' Next: '+esc(up.n):'Festival offers')+'</b><span>10% off over \u00a5100, 7% off up to \u00a5100'+(a?' \u00b7 ON now':up?' \u00b7 '+up.s+' to '+up.e:'')+'</span></div>'+
    '<div class="panel" style="margin-top:10px"><b>\u26a1 Weekend flash deal</b><p class="note" style="margin-bottom:8px">'+(wk?'Claim within 10 seconds for an extra 5% coupon!':'Every Saturday and Sunday: a 10-second flash coupon.')+'</p>'+(wk?'<button class="btn gold block" id="wkb" data-act="wkclaim">Claim now \u00b7 <span id="wkc">10</span>s</button>':'')+'</div>'+
    '<div class="actions"><button class="btn" data-act="go" data-v="shop">Shop now</button><button class="btn ghost" data-act="go" data-v="play">🍛 Dopamine kitchen</button><button class="btn ghost" data-act="go" data-v="calc">Calculator</button></div>';
   $('#sheet').hidden=false;clearInterval(wkT);if(!wk)return;var n=10;
-  wkT=setInterval(function(){var c=$('#wkc');if(!c||$('#sheet').hidden){clearInterval(wkT);return;}n--;c.textContent=n;if(n<=0){clearInterval(wkT);var b=$('#wkb');b.disabled=true;b.textContent='Offer ended \u00b7 tap \ud83c\udf81 to try again';}},1000);};
+  wkT=setInterval(function(){var c=$('#wkc');if(!c||$('#sheet').hidden){clearInterval(wkT);return;}n--;c.textContent=n;if(n<=0){clearInterval(wkT);var b=$('#wkb');b.disabled=true;b.textContent='Offer ended \u00b7 tap 🎁 to try again';}},1000);};
 A.wkclaim=function(){clearInterval(wkT);S.settings.coupons=S.settings.coupons.filter(function(c){return c.code!=='WEEKEND';});S.settings.coupons.push({code:'WEEKEND',type:'pct',value:5,min:0});S.coupon='WEEKEND';save();closeSheet();toast('\u26a1 WEEKEND coupon applied to your cart');updateChrome();};
 
 /* accounts */
@@ -1629,8 +1689,7 @@ V.login=loginView;
 var ome=V.me;
 V.me=function(){
   if(!me())return loginView();
-  var h=ome().replace('id="pf-phone"','id="pf-phone" readonly'),i=h.indexOf('<div class="panel"><h2>Shop owner</h2>');
-  if(i>-1){var j=h.indexOf('</div>',i)+6;h=h.slice(0,i)+'<div class="panel"><h2>\ud83d\udc4b '+esc(me().nick)+'</h2><p class="note" style="margin-bottom:10px">'+esc(me().phone)+'</p><div class="actions" style="margin-top:0"><button class="btn gold" data-act="go" data-v="play">🍛 Dopamine kitchen</button><button class="btn ghost" data-act="logout">Logout</button></div></div>'+h.slice(j);}
+  var h=ome().replace('id="pf-phone"','id="pf-phone" readonly');
   return h;};
 var ock=V.checkout;
 V.checkout=function(){
@@ -1640,10 +1699,9 @@ Object.assign(A,{
   amode:function(t){authMode=t.dataset.v;render();},
   authgo:function(t){authMode=t.dataset.v;closeSheet();go('login');},
   logout:function(){S.me=null;save();closeSheet();go('home');toast('Logged out');},
-  alogout:function(){adminOK=false;closeSheet();if(view==='admin')go('home');else render();toast('Admin logged out');},
+  alogout:function(){adminOK=false;adminAttempts=0;adminLockT=0;closeSheet();if(view==='admin')go('home');else render();toast('Admin logged out');},
   acct:function(){var u=me();
-    $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><h2>Account</h2><div class="panel" style="margin-top:12px"><h2 style="font-size:1.05rem">Customer</h2>'+(u?'<p class="note" style="margin-bottom:8px">Signed in: <b>'+esc(u.nick)+'</b> \u00b7 '+esc(u.phone)+'</p><div class="actions" style="margin-top:0"><button class="btn sm" data-act="go" data-v="me">My account</button><button class="btn sm ghost" data-act="logout">Logout</button></div>':'<div class="actions" style="margin-top:0"><button class="btn sm" data-act="authgo" data-v="login">Login</button><button class="btn sm ghost" data-act="authgo" data-v="reg">Register</button></div>')+'</div>'+
-     '<div class="panel"><h2 style="font-size:1.05rem">Admin</h2>'+(adminOK?'<div class="actions" style="margin-top:0"><button class="btn sm" data-act="go" data-v="admin">Open panel</button><button class="btn sm ghost" data-act="alogout">Admin logout</button></div>':'<div class="actions" style="margin-top:0"><button class="btn sm" data-act="go" data-v="admin">Admin login</button></div>')+'</div>';
+    $('#sheetBox').innerHTML='<button class="x" data-act="close" aria-label="Close">\u00d7</button><h2>Account</h2><div class="panel" style="margin-top:12px"><h2 style="font-size:1.05rem">Customer</h2>'+(u?'<p class="note" style="margin-bottom:8px">Signed in: <b>'+esc(u.nick)+'</b> \u00b7 '+esc(u.phone)+'</p><div class="actions" style="margin-top:0"><button class="btn sm" data-act="go" data-v="me">My account</button><button class="btn sm ghost" data-act="logout">Logout</button></div>':'<div class="actions" style="margin-top:0"><button class="btn sm" data-act="authgo" data-v="login">Login</button><button class="btn sm ghost" data-act="authgo" data-v="reg">Register</button></div>')+'</div>';
     $('#sheet').hidden=false;}
 });
 document.addEventListener('submit',function(e){
@@ -1742,7 +1800,7 @@ V.wish=function(){var l=S.products.filter(function(p){return S.wish.indexOf(p.id
 /* home: search, quick buttons, trust strip, arrows */
 var oh3=V.home;
 V.home=function(){
-  var q=[['\ud83d\udce6','Track order','track',''],['\u2665','Wishlist','go','wish'],['\ud83c\udf81','Offers','offers',''],['\ud83e\uddee','Calculator','go','calc'],['\ud83d\udcde','Help line','help','']];
+  var q=[['\ud83d\udce6','Track order','track',''],['\u2665','Wishlist','go','wish'],['🎁','Offers','offers',''],['\ud83e\uddee','Calculator','go','calc'],['\ud83d\udcde','Help line','help','']];
   return oh3()
    .replace('<section class="hero">','<div class="wrap hs"><form data-form="gsearch"><input id="gs" type="search" placeholder="Search masala, rice, tea, chanachur\u2026" aria-label="Search products"><button type="submit" aria-label="Search">\ud83d\udd0d</button></form></div><section class="hero">')
    .replace('<div class="wrap car-wrap">','<div class="wrap qa">'+q.map(function(x){return '<button data-act="'+x[2]+'"'+(x[3]?' data-v="'+x[3]+'"':'')+'><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'</div><div class="wrap tr"><div>\ud83d\ude9a SF Express 1\u20133 days</div><div>\u2705 Trusted Bangladeshi brands</div><div>\ud83d\udcac WhatsApp &amp; WeChat support</div><div>\ud83d\udcb3 WeChat Pay \u00b7 Alipay \u00b7 Bank</div></div><div class="wrap car-wrap">')
@@ -1929,7 +1987,7 @@ function updateThemeIcon(){
   var pill=$('#pill');
   if(pill && !$('#giftIco')){
     /* safety net: re-add the icon row if markup was ever regenerated */
-    $('#pill').insertAdjacentHTML('beforebegin','<button class="ib" id="giftIco" data-act="offers" aria-label="Offers">\ud83c\udf81</button><button class="ib" id="themeIco" data-act="theme" aria-label="Toggle dark mode" title="Toggle dark mode">\ud83c\udf8f</button>');
+    $('#pill').insertAdjacentHTML('beforebegin','<button class="ib" id="giftIco" data-act="offers" aria-label="Offers">🎁</button><button class="ib" id="themeIco" data-act="theme" aria-label="Toggle dark mode" title="Toggle dark mode">\ud83c\udf8f</button>');
   }
   document.querySelector('header.top').insertAdjacentHTML('afterend','<button class="notif-bar" id="wkbar" data-act="go" data-v="shop" hidden>\u26a1 Weekend offer live: 10% off rice \u00b7 masala \u00b7 sweets \u00b7 snacks \u2014 50% off custard, firni &amp; faluda</button>');
 })();
@@ -2073,8 +2131,6 @@ Object.assign(A,{
       '<div class="actions" style="display:flex;flex-direction:column;gap:6px">'+
         '<div class="actions"><button class="btn" data-act="go" data-v="me">My account</button><button class="btn ghost" data-act="close">Close</button></div>'+
         (u?'<button class="btn ghost" style="color:var(--red);border-color:var(--red)" data-act="logout">Log out</button>':'')+
-        (adminOK?'<button class="btn" style="--btn:var(--gold)" data-act="go" data-v="admin">Admin Panel</button>':'')+
-        (u&&adminOK?'<button class="btn ghost" style="color:var(--red);border-color:var(--red)" data-act="adminlogout">Admin Logout</button>':'')+
       '</div>';
     $('#sheet').hidden=false;
   },
