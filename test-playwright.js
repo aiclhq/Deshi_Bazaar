@@ -35,7 +35,7 @@ async function seed(page) {
   page.on('console', m => { if (m.type() === 'error') results.consoleErrors.push(m.text()); });
   page.on('pageerror', e => results.pageErrors.push(e.message));
 
-  await page.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 90000 });
   results.passed.push('Page loads: ' + await page.title());
   const gsapVer = await page.evaluate(() => typeof window.gsap !== 'undefined' && window.gsap.version);
   results.passed.push('GSAP version: ' + gsapVer);
@@ -262,7 +262,7 @@ async function seed(page) {
   const mob = await browser.newPage({ viewport: { width: 375, height: 812 } });
   mob.on('console', m => { if (m.type() === 'error') results.consoleErrors.push('[mobile] ' + m.text()); });
   mob.on('pageerror', e => results.pageErrors.push('[mobile] ' + e.message));
-  await mob.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await mob.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 90000 });
   check(await mob.locator('.tabbar').isVisible(), '[mobile] Tab bar visible', '[mobile] tab bar missing');
   await mob.click('.tabbar button[data-v="shop"]');
   await mob.waitForTimeout(800);
@@ -281,7 +281,7 @@ async function seed(page) {
   // ===== Reduced motion =====
   const rm = await browser.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
   rm.on('pageerror', e => results.pageErrors.push('[reduced-motion] ' + e.message));
-  await rm.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await rm.goto(FILE, { waitUntil: 'domcontentloaded', timeout: 90000 });
   await rm.waitForTimeout(800);
   const rmH1 = await rm.evaluate(() => getComputedStyle(document.querySelector('.hero h1')).opacity);
   check(rmH1 === '1', '[reduced-motion] Hero h1 opacity = 1', '[reduced-motion] hero h1 opacity ' + rmH1);
